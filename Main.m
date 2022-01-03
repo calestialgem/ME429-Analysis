@@ -5,8 +5,7 @@ clc();
 clear();
 close('all');
 
-APC19x10E = GetAPC19x10E();
-APC19x12E = GetAPC19x12E();
+fan = GetAPC14x7E();
 
-APC19x10E.PlotFitJ();
-APC19x10E.PlotFitw();
+fan.PlotFitJ();
+fan.PlotFitw();
