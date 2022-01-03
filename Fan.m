@@ -33,7 +33,10 @@ classdef Fan
 			Ct = fit(points, Ct_all, 'poly55', 'Normalize', 'on');
 			Cq = fit(points, Cq_all, 'poly55', 'Normalize', 'on');
 		end
-		function [T, Q] = Find(self, rho, J, w)
+		function [T, Q] = Find(self, rho, D, V, w)
+			J = V/(w*D);
+			T = rho*w^2*D^4*Ct(J, w);
+			Q = rho*w^2*D^5*Cq(J, w);
 		end
 	end
 	methods(Static)
