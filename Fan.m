@@ -1,6 +1,9 @@
 classdef Fan
 	properties
 		Name
+		m
+		D
+		I
 		J_data
 		w_data
 		Ct_data
@@ -9,8 +12,11 @@ classdef Fan
 		Cq
 	end
 	methods
-		function self = Fan(name, J_data, w_data, Ct_data, Cp_data)
+		function self = Fan(name, m, D, J_data, w_data, Ct_data, Cp_data)
 			self.Name = name;
+			self.m = m*28.3495231e-3;
+			self.D = D*2.54e-2;
+			self.I = self.m*self.D^2/12;
 			self.J_data = J_data ./ (2*pi);
 			self.w_data = w_data .* (2*pi/60);
 			self.Ct_data = Ct_data ./ (2*pi)^2;
@@ -35,10 +41,10 @@ classdef Fan
 			self.Ct = fit(points, Ct_all, 'poly55', 'Normalize', 'on');
 			self.Cq = fit(points, Cq_all, 'poly55', 'Normalize', 'on');
 		end
-		function [T, Q] = Find(self, rho, D, V, w)
-			J = V/(w*D);
-			T = rho*w^2*D^4*self.Ct(J, w);
-			Q = rho*w^2*D^5*self.Cq(J, w);
+		function [T, Q] = Find(self, rho, V, w)
+			J = V/(w*self.D);
+			T = rho*w^2*self.D^4*self.Ct(J, w);
+			Q = rho*w^2*self.D^5*self.Cq(J, w);
 		end
 		function PlotFitJ(self)
 			J_range = 0:self.J_data(end)/100:self.J_data(end);
