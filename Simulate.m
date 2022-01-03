@@ -1,5 +1,25 @@
-function V = Simulate(vehicle)
+function v = Simulate(vehicle, Tf)
 	[Vmin, Vmax] = vehicle.SpeedBoundary();
-	[V, T] = RungeKuttaMethod(@(~, v) vehicle.Acceleration(v), Vmin, 30, 1e4);
-	
+	[v, t] = RungeKuttaMethod(@(~, V) vehicle.Acceleration(V), Vmin, Tf, 1e4);
+	[A, Vt, D, T, Q, F] = vehicle.Acceleration(v);
+	figure();
+	hold('on');
+	grid('on');
+	plot(t, v, '-', 'LineWidth', 2);
+	yline(Vmax, '--', 'LineWidth', 2);
+	xlabel('t (s)');
+	ylabel('v (m/s)');
+	title(sprintf('Speed Diagram r=%.2f', vehicle.r));
+	legend('Speed', 'Upper Speed Limit', 'Location', 'Best');
+	figure();
+	hold('on');
+	grid('on');
+	plot(t, D, '-', 'Color', '#a87d32', 'LineWidth', 2);
+	plot(t, T, '-', 'Color', '#32a865', 'LineWidth', 2);
+	plot(t, vehicle.s.*Q, '-', 'Color', '#a83232', 'LineWidth', 2);
+	plot(t, F, '-', 'Color', '#323ca8', 'LineWidth', 2);
+	xlabel('t (s)');
+	ylabel('F (N)');
+	title(sprintf('Force Diagram r=%.2f', vehicle.r));
+	legend('Body Drag Force', 'Thrust Force', 'Fan Force', 'Net Force', 'Location', 'Best');
 end
