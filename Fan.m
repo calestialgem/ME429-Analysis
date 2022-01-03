@@ -1,5 +1,6 @@
 classdef Fan
 	properties
+		Name
 		J_data
 		w_data
 		Ct_data
@@ -8,7 +9,8 @@ classdef Fan
 		Cq
 	end
 	methods
-		function self = Fan(J_data, w_data, Ct_data, Cp_data)
+		function self = Fan(name, J_data, w_data, Ct_data, Cp_data)
+			self.Name = name;
 			self.J_data = J_data ./ (2*pi);
 			self.w_data = w_data .* (2*pi/60);
 			self.Ct_data = Ct_data ./ (2*pi)^2;
@@ -42,6 +44,7 @@ classdef Fan
 			J_range = 0:self.J_data(end)/100:self.J_data(end);
 			w_middle = ceil(length(self.w_data)/2);
 			figure();
+			title(self.Name + " C_t vs J");
 			hold('on');
 			grid('on');
 			xlabel('J');
@@ -60,6 +63,7 @@ classdef Fan
 				sprintf('Data w=%.0frad/s', self.w_data(w_middle)),...
 				sprintf('Data w=%.0frad/s', self.w_data(end)), 'Location', 'Best');
 			figure();
+			title(self.Name + " C_q vs J");
 			hold('on');
 			grid('on');
 			xlabel('J');
@@ -82,9 +86,10 @@ classdef Fan
 			w_range = 0:self.w_data(end)/100:self.w_data(end);
 			J_middle = ceil(length(self.J_data)/2);
 			figure();
+			title(self.Name + " C_t vs w");
 			hold('on');
 			grid('on');
-			xlabel('w');
+			xlabel('w (rad/s)');
 			ylabel('C_t');
 			plot(w_range, self.Ct(self.J_data(1), w_range), '-r', 'LineWidth', 2);
 			plot(w_range, self.Ct(self.J_data(J_middle), w_range), '-g', 'LineWidth', 2);
@@ -93,16 +98,17 @@ classdef Fan
 			plot(self.w_data, self.Ct_data(:, J_middle), 'xg', 'LineWidth', 2);
 			plot(self.w_data, self.Ct_data(:, end), 'xb', 'LineWidth', 2);
 			legend(...
-				sprintf('Fit J=%g', self.J_data(1)),...
-				sprintf('Fit J=%g', self.J_data(J_middle)),...
-				sprintf('Fit J=%g', self.J_data(end)),...
-				sprintf('Data J=%g', self.J_data(1)),...
-				sprintf('Data J=%g', self.J_data(J_middle)),...
-				sprintf('Data J=%g', self.J_data(end)), 'Location', 'Best');
+				sprintf('Fit J=%.2f', self.J_data(1)),...
+				sprintf('Fit J=%.2f', self.J_data(J_middle)),...
+				sprintf('Fit J=%.2f', self.J_data(end)),...
+				sprintf('Data J=%.2f', self.J_data(1)),...
+				sprintf('Data J=%.2f', self.J_data(J_middle)),...
+				sprintf('Data J=%.2f', self.J_data(end)), 'Location', 'Best');
 			figure();
+			title(self.Name + " C_q vs w");
 			hold('on');
 			grid('on');
-			xlabel('w');
+			xlabel('w (rad/s)');
 			ylabel('C_q');
 			plot(w_range, self.Cq(self.J_data(1), w_range), '-r', 'LineWidth', 2);
 			plot(w_range, self.Cq(self.J_data(J_middle), w_range), '-g', 'LineWidth', 2);
@@ -111,12 +117,12 @@ classdef Fan
 			plot(self.w_data, self.Cq_data(:, J_middle), 'xg', 'LineWidth', 2);
 			plot(self.w_data, self.Cq_data(:, end), 'xb', 'LineWidth', 2);
 			legend(...
-				sprintf('Fit J=%g', self.J_data(1)),...
-				sprintf('Fit J=%g', self.J_data(J_middle)),...
-				sprintf('Fit J=%g', self.J_data(end)),...
-				sprintf('Data J=%g', self.J_data(1)),...
-				sprintf('Data J=%g', self.J_data(J_middle)),...
-				sprintf('Data J=%g', self.J_data(end)), 'Location', 'Best');
+				sprintf('Fit J=%.2f', self.J_data(1)),...
+				sprintf('Fit J=%.2f', self.J_data(J_middle)),...
+				sprintf('Fit J=%.2f', self.J_data(end)),...
+				sprintf('Data J=%.2f', self.J_data(1)),...
+				sprintf('Data J=%.2f', self.J_data(J_middle)),...
+				sprintf('Data J=%.2f', self.J_data(end)), 'Location', 'Best');
 		end
 	end
 end
