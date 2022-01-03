@@ -33,11 +33,12 @@ classdef Vehicle
 			self = self.Findi();
 			self = self.Finds();
 		end
-		function a = Acceleration(self, V)
-			Vt = V-self.air.V;
+		function [a, Vt, D, T, Q, F] = Acceleration(self, V)
+			Vt = self.air.TrueSpeed(V);
 			D = -0.003.*Vt.^2;
 			[T, Q] = self.fan.Find(self.air.R, Vt, self.s.*V);
-			a = (D+T-self.s.*Q)./self.i;
+			F = D+T-self.s.*Q;
+			a = F/self.i;
 		end
 		function [Vmin, Vmax] = SpeedBoundary(self)
 			Vmin = max(self.air.V, min(self.fan.w_data)/self.s);
