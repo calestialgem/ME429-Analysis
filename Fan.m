@@ -41,10 +41,10 @@ classdef Fan
 			self.Ct = fit(points, Ct_all, 'poly55', 'Normalize', 'on');
 			self.Cq = fit(points, Cq_all, 'poly55', 'Normalize', 'on');
 		end
-		function [T, Q] = Find(self, rho, V, w)
+		function [T, Q] = Find(self, R, V, w)
 			J = V/(w*self.D);
-			T = rho*w^2*self.D^4*self.Ct(J, w);
-			Q = rho*w^2*self.D^5*self.Cq(J, w);
+			T = R*w^2*self.D^4*self.Ct(J, w);
+			Q = R*w^2*self.D^5*self.Cq(J, w);
 		end
 		function PlotFitJ(self)
 			J_range = 0:self.J_data(end)/100:self.J_data(end);
