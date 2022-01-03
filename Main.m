@@ -13,8 +13,8 @@ end
 
 fan = GetAPC14x7E();
 air = Air(5, 1.225);
-vehicle = Vehicle(fan, air, 0.2, 0.35, 1.5);
-v = Simulate(vehicle, 15);
+vehicle = Vehicle(fan, air, 0.2, 0.35, 1.52);
+v = Simulate(vehicle, 30);
 [Vmin, Vmax] = vehicle.SpeedBoundary();
 fprintf(fileID, 'r=%.2f Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', vehicle.r, max(v), Vmin, Vmax);
 

@@ -1,16 +1,18 @@
-function [Y, T] = RungeKuttaMethod(f, y, Tf, N)
+function [T, Y] = RungeKuttaMethod(f, N, Tf, y)
 	h = Tf/N;
+	h2 = h/2;
+	h6 = h/6;
 	t = 0;
-	Y = zeros(1, N);
 	T = zeros(1, N);
+	Y = zeros(1, N);
 	Y(1) = y;
 	for k = 2:N
-		f1 = f(t, y);
-		f2 = f(t+h/2, y+f1/2);
-		f3 = f(t+h/2, y+f2/2);
-		f4 = f(t+h, y+f3);
+		k1 = f(t, y);
+		k2 = f(t+h2, y+h2*k1);
+		k3 = f(t+h2, y+h2*k2);
+		k4 = f(t+h, y+h*k3);
 		t = t+h;
-		y = y + h/6*(f1+2*(f2+f3)+f4);
+		y = y + h6*(k1+2*(k2+k3)+k4);
 		T(k) = t;
 		Y(k) = y;
 	end
