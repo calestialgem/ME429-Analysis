@@ -35,9 +35,9 @@ classdef Vehicle
 		end
 		function a = Acceleration(self, V)
 			Vt = V-self.air.V;
-			D = -0.003*Vt^2;
-			[T, Q] = self.fan.Find(self.air.R, Vt, self.s*V);
-			a = (D+T-self.s*Q)/self.i;
+			D = -0.003.*Vt.^2;
+			[T, Q] = self.fan.Find(self.air.R, Vt, self.s.*V);
+			a = (D+T-self.s.*Q)./self.i;
 		end
 	end
 end
