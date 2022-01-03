@@ -39,5 +39,9 @@ classdef Vehicle
 			[T, Q] = self.fan.Find(self.air.R, Vt, self.s.*V);
 			a = (D+T-self.s.*Q)./self.i;
 		end
+		function [Vmin, Vmax] = SpeedBoundary(self)
+			Vmin = max(self.air.V, min(self.fan.w_data)/self.s);
+			Vmax = max(self.fan.w_data)/self.s;
+		end
 	end
 end
