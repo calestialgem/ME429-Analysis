@@ -19,8 +19,8 @@ classdef Vehicle
 			self.Dw = 0.15*L;
 			self.Iw = 0;
 			self.r = r;
-			self.Findi();
-			self.Finds();
+			self = self.Findi();
+			self = self.Finds();
 		end
 		function self = Findi(self)
 			self.i = self.m+(12*self.Iw+4*self.fan.I/self.r^2)/self.Dw^2;
@@ -30,8 +30,8 @@ classdef Vehicle
 		end
 		function self = Setr(self, r)
 			self.r = r;
-			self.Findi();
-			self.Finds();
+			self = self.Findi();
+			self = self.Finds();
 		end
 		function a = Acceleration(self, V)
 			Vt = V-self.air.V;
