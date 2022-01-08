@@ -25,7 +25,7 @@ fprintf(fileID, 'r=1 Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', Vt, Vmin, Vmax);
 fprintf(fileID, 'Best Bounded  r=%.2f Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', rb, Vb, Vminb, Vmaxb);
 fprintf(fileID, 'Best Ubounded r=%.2f Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', rt, Vt, Vmint, Vmaxt);
 
-vehicle = Vehicle(fan, air, 1.52);
+vehicle = Vehicle(fan, air, 1.502);
 v = Simulate(vehicle, 60);
 [Vmin, Vmax] = vehicle.SpeedBoundary();
 fprintf(fileID, 'r=%.2f Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', vehicle.r, max(v), Vmin, Vmax);
