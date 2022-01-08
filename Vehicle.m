@@ -41,7 +41,7 @@ classdef Vehicle
 			self = self.Findi();
 			self = self.Finds();
 		end
-		function [a, Vt, w, D, T, Q, B, F] = Acceleration(self, V)
+		function [a, Vt, D, T, Q, B, F] = Acceleration(self, V)
 			Vt = self.air.TrueSpeed(V);
 			D = -0.003.*Vt.^2;
 			w = self.s.*V;
