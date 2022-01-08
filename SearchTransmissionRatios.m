@@ -29,5 +29,5 @@ function [Vt, rt, Vb, rb] = SearchTransmissionRatios(vehicle, rr)
 	plot(rr, Vr, 'LineWidth', 2);
 	plot(rb, Vb, 'x', 'MarkerSize', 12, 'LineWidth', 2);
 	plot(rt, Vt, 'x', 'MarkerSize', 12, 'LineWidth', 2);
-	legend('Lower Speed Limit', 'Upper Speed Limit', 'Top Speed', 'Bounded Best', 'Best', 'Location', 'Best');
+	legend('Data Start', 'Data End', 'Top Speed', 'Bounded Best', 'Best', 'Location', 'Best');
 end

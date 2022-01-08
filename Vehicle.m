@@ -15,16 +15,24 @@ classdef Vehicle
 		s
 	end
 	methods
-		function self = Vehicle(fan, air, m, L, r)
+		function self = Vehicle(fan, air, r)
 			self.fan = fan;
 			self.air = air;
+			L = 35e-2;
 			self.Dw = 0.15*L;
-			self.Mw = (self.Dw^2-8.35e-3^2)*pi/4*5e-3*0.6e3;
+			m = 350e-3;
+			wheelThickness = 10e-3;
+			wheelDensity = 0.6e3;
+			hubThickness = 10e-3;
+			shaft = 6.35e-3/2;
+			clearance = 1e-3;
+			viscosity = 0.35;
+			self.Mw = (self.Dw^2-((shaft+clearance)*2)^2)*pi/4*wheelThickness*wheelDensity;
 			self.Iw = self.Mw*self.Dw^2/8;
 			self.m = m + fan.m + self.Mw;
-			self.P = ((m+fan.m)/2)/(2*(6.35e-3/2)*5e-3);
-			self.f = 2*pi^2*0.35/self.P*(6.35e-3/2)/1e-3;
-			self.b = 2*(6.35e-3/2)^2*self.f*5e-3*self.P*2/(2*pi)*60;
+			self.P = ((m+fan.m)/2)/(2*shaft*hubThickness);
+			self.f = 2*pi^2*viscosity/self.P*shaft/clearance;
+			self.b = 2*shaft^2*self.f*hubThickness*self.P*2/(2*pi)*60;
 			self.L = L;
 			self.r = r;
 			self = self.Findi();
