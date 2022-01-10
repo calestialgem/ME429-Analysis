@@ -3,7 +3,7 @@ function [Vt, rt] = SearchTransmissionRatios(vehicle, rr)
 	for k = 1:length(rr)
 		vehicle = vehicle.Setr(rr(k));
 		[Vmin, Vmax] = vehicle.SpeedBoundary();
-		Vr(k) = BisectionMethod(@(V) vehicle.Acceleration(V), Vmin, Vmax, 1e-6, 1e3);
+		Vr(k) = BisectionMethod(@(V) vehicle.Acceleration(V), Vmin, Vmax*1000, 1e-6, 1e3);
 	end
 	[Vt, kt] = max(Vr);
 	rt = rr(kt);

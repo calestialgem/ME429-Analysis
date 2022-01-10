@@ -1,4 +1,4 @@
-function APC14x7E = GetAPC14x7E()
+function APC14x7E = GetAPC14x7E(air)
 	% w in RPM, J in 1/rev, Pe, Ct, Cp, PWR, Q in In.Lbf, T in Lbf
 	PER3_14x7E_DAT = [
 		1000        0.00      0.0000      0.0902      0.0335       0.001       0.091       0.110;
@@ -514,11 +514,11 @@ function APC14x7E = GetAPC14x7E()
 	];
 	% w in rad/s
 	PER3_14x7E_DAT(:, 1) = PER3_14x7E_DAT(:, 1) * (2*pi/60);
-	% J in 1
+	% J
 	PER3_14x7E_DAT(:, 2) = PER3_14x7E_DAT(:, 2) / (2*pi);
-	% Q in N.m
-	PER3_14x7E_DAT(:, 7) = PER3_14x7E_DAT(:, 7) * 0.112984833333333;
-	% T in N
-	PER3_14x7E_DAT(:, 8) = PER3_14x7E_DAT(:, 8) * 4.448221615255;
-	APC14x7E = Fan("APC 14x7E", 1.20*28.3495231e-3, 14*2.54e-2, min(PER3_14x7E_DAT(:, 1)), max(PER3_14x7E_DAT(:, 1)), PER3_14x7E_DAT(:, [1 2]), PER3_14x7E_DAT(:, 8), PER3_14x7E_DAT(:, 7));
+	% Ct
+	PER3_14x7E_DAT(:, 4) = PER3_14x7E_DAT(:, 4) / (2*pi)^2;
+	% Cq
+	PER3_14x7E_DAT(:, 5) = PER3_14x7E_DAT(:, 5) / (2*pi)^3;
+	APC14x7E = Fan("APC 14x7E", air, 1.20*28.3495231e-3, 14*2.54e-2, min(PER3_14x7E_DAT(:, 1)), max(PER3_14x7E_DAT(:, 1)), PER3_14x7E_DAT(:, [1 2]), PER3_14x7E_DAT(:, 4), PER3_14x7E_DAT(:, 5));
 end

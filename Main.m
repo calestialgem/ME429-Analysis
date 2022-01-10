@@ -11,16 +11,16 @@ if ~isempty(errmsg)
 	fprintf('File %s Error Message: %s\n', fileName, errmsg);
 end
 
-fan = GetAPC14x7E();
+air = Air(5, 1.225);
+fan = GetAPC14x7E(air);
 fan.PlotFitw();
 fan.PlotFitJ();
 fprintf(fileID, fan.RootMeanSquare());
-air = Air(5);
 vehicle = Vehicle(fan, air, 1);
 
-[Vt, rt] = SearchTransmissionRatios(vehicle, 0.5:0.01:3);
+[Vt, rt] = SearchTransmissionRatios(vehicle, 0.5:0.1:5);
 vehicle = vehicle.Setr(rt);
-v = Simulate(vehicle, 100);
+v = Simulate(vehicle, 10);
 [Vmin, Vmax] = vehicle.SpeedBoundary();
 fprintf(fileID, 'r=%.2f Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', rt, Vt, Vmin, Vmax);
 

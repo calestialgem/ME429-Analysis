@@ -1,2 +1,2 @@
-Root Mean Squares T=3.198917e-04 Q=1.285048e-03
-r=2.27 Vt=11.5m/s B=[6.2, 106.1]m/s
+Root Mean Squares Ct=4.314119e-04 Cq=1.276028e-03
+r=0.50 Vt=NaNm/s B=[5.0, 23.4]m/s
