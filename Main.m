@@ -12,6 +12,8 @@ if ~isempty(errmsg)
 end
 
 fan = GetAPC14x7E();
+fan.PlotFitw();
+fan.PlotFitJ();
 fprintf(fileID, fan.RootMeanSquare());
 air = Air(5);
 vehicle = Vehicle(fan, air, 1);
