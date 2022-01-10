@@ -12,7 +12,7 @@ if ~isempty(errmsg)
 end
 
 fan = GetAPC14x7E();
-fprintf(fileID, 'Ct_rms = %e Cq_rms = %e\n', fan.Ct_rms, fan.Cq_rms);
+fprintf(fileID, fan.RootMeanSquare());
 air = Air(5, 1.225);
 
 vehicle = Vehicle(fan, air, 1);
