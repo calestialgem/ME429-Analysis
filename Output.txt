@@ -1,3 +1,4 @@
+Ct_rms = 4.085296e-04 Cq_rms = 1.261374e-03
 r=1 Vt=57.9m/s B=[5.0, 46.7]m/s
 Best Bounded  r=1.48 Vt=69.1m/s B=[5.0, 69.2]m/s
 Best Ubounded r=1.40 Vt=72.2m/s B=[5.0, 65.4]m/s

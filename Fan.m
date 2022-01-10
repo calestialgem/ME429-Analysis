@@ -10,6 +10,8 @@ classdef Fan
 		Cq_data
 		Ct
 		Cq
+		Ct_rms
+		Cq_rms
 	end
 	methods
 		function self = Fan(name, m, D, J_data, w_data, Ct_data, Cp_data)
@@ -40,6 +42,8 @@ classdef Fan
 			points = [J_all, w_all];
 			self.Ct = fit(points, Ct_all, 'poly55', 'Normalize', 'on');
 			self.Cq = fit(points, Cq_all, 'poly55', 'Normalize', 'on');
+			self.Ct_rms = sqrt(sum((self.Ct(points)-Ct_all).^2))/N/(max(Ct_all)-min(Ct_all));
+			self.Cq_rms = sqrt(sum((self.Cq(points)-Cq_all).^2))/N/(max(Cq_all)-min(Cq_all));
 		end
 		function [T, Q] = Find(self, R, V, w)
 			J = V./(w.*self.D);
