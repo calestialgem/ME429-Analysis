@@ -6,11 +6,9 @@ function v = Simulate(vehicle, Tf)
 	hold('on');
 	grid('on');
 	plot(t, v, '-', 'LineWidth', 2);
-	yline(Vmax, '--', 'LineWidth', 2);
 	xlabel('t (s)');
 	ylabel('v (m/s)');
 	title(sprintf('Speed Diagram r=%.2f', vehicle.r));
-	legend('Speed', 'Data End', 'Location', 'Best');
 	figure();
 	hold('on');
 	grid('on');
