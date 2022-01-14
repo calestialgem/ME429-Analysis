@@ -17,7 +17,7 @@ fan = GetAPC14x7E(air);
 % fan.PlotFitJ();
 fprintf(fileID, fan.RootMeanSquare());
 vehicle = Vehicle(fan, air, 1);
-fan.PlotFitTQ(vehicle);
+% fan.PlotFitTQ(vehicle);
 
 % [Vt, rt] = SearchTransmissionRatios(vehicle, 0.5:0.1:5);
 % vehicle = vehicle.Setr(rt);
