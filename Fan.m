@@ -136,5 +136,20 @@ classdef Fan
 				sprintf('Data J=%.2f', J_data(J_middle)),...
 				sprintf('Data J=%.2f', J_data(end)), 'Location', 'Best');
 		end
+		function PlotFitTQ(self, vehicle)
+			[Vmin, Vmax] = vehicle.SpeedBoundary();
+			v = Vmin:(Vmax-Vmin)/1000:Vmax;
+			w = vehicle.s * v;
+			[T, Q] = self.Find(self.air.TrueSpeed(v), w);
+			figure();
+			hold('on');
+			grid('on');
+			title(sprintf('Fan Forces vs Vehicle Velocity r=%.2f', vehicle.r));
+			xlabel('Velocity (m/s)');
+			ylabel('Force (N)');
+			plot(v, T, 'LineWidth', 2);
+			plot(v, vehicle.s*Q, 'LineWidth', 2);
+			legend('Thrust', 'Torque', 'Location', 'Best');
+		end
 	end
 end

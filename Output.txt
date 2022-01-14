@@ -1,2 +1,1 @@
 Root Mean Squares Ct=4.314119e-04 Cq=1.276028e-03
-r=0.50 Vt=NaNm/s B=[5.0, 23.4]m/s
