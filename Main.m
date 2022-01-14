@@ -21,7 +21,7 @@ vehicle = Vehicle(fan, air, 1);
 
 [Vt, rt] = SearchTransmissionRatios(vehicle, 0.1:0.01:5);
 vehicle = vehicle.Setr(rt);
-v = Simulate(vehicle, 50);
+v = Simulate(vehicle, 100);
 [Vmin, Vmax] = vehicle.SpeedBoundary();
 fprintf(fileID, 'r=%.2f Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', rt, Vt, Vmin, Vmax);
 

@@ -7,9 +7,6 @@ classdef Vehicle
 		Mw
 		Iw
 		m
-		P
-		f
-		b
 		r
 		i
 		s
@@ -23,16 +20,9 @@ classdef Vehicle
 			m = 350e-3;
 			wheelThickness = 10e-3;
 			wheelDensity = 0.6e3;
-			hubThickness = 10e-3;
-			shaft = 6.35e-3/2;
-			clearance = 1e-3;
-			viscosity = 0.35;
-			self.Mw = (self.Dw^2-((shaft+clearance)*2)^2)*pi/4*wheelThickness*wheelDensity;
+			self.Mw = self.Dw^2*pi/4*wheelThickness*wheelDensity;
 			self.Iw = self.Mw*self.Dw^2/8;
 			self.m = m + fan.m + self.Mw;
-			self.P = ((m+fan.m)/2)/(2*shaft*hubThickness);
-			self.f = 2*pi^2*viscosity/self.P*shaft/clearance;
-			self.b = 2*shaft^2*self.f*hubThickness*self.P*2/(2*pi)*60;
 			self.L = L;
 			self.r = r;
 			self = self.Findi();
@@ -49,13 +39,11 @@ classdef Vehicle
 			self = self.Findi();
 			self = self.Finds();
 		end
-		function [a, Vt, D, T, Q, B, F] = Acceleration(self, V)
+		function [a, Vt, T, Q, F] = Acceleration(self, V)
 			Vt = self.air.TrueSpeed(V);
-			D = -0.003.*Vt.^2;
 			w = self.s.*V;
-			B = self.b.*w;
 			[T, Q] = self.fan.Find(Vt, w);
-			F = D+T-self.s.*Q;%-(2/self.Dw).*B;
+			F = T-self.s.*Q;
 			a = F/self.i;
 		end
 		function [Vmin, Vmax] = SpeedBoundary(self)
