@@ -55,7 +55,7 @@ classdef Vehicle
 			w = self.s.*V;
 			B = self.b.*w;
 			[T, Q] = self.fan.Find(Vt, w);
-			F = D+T-self.s.*Q-(2/self.Dw).*B;
+			F = D+T-self.s.*Q;%-(2/self.Dw).*B;
 			a = F/self.i;
 		end
 		function [Vmin, Vmax] = SpeedBoundary(self)
