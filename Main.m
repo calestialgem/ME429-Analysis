@@ -17,10 +17,10 @@ fan = GetAPC14x7E(air);
 % fan.PlotFitJ();
 fprintf(fileID, fan.RootMeanSquare());
 vehicle = Vehicle(fan, air, 1);
-% fan.PlotFitTQ(vehicle);
 
 [Vt, rt] = SearchTransmissionRatios(vehicle, 0.1:0.01:5);
 vehicle = vehicle.Setr(rt);
+fan.PlotFitTQ(vehicle);
 v = Simulate(vehicle, 100);
 [Vmin, Vmax] = vehicle.SpeedBoundary();
 fprintf(fileID, 'r=%.2f Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', rt, Vt, Vmin, Vmax);

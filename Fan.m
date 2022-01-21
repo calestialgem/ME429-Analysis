@@ -141,15 +141,23 @@ classdef Fan
 			v = Vmin:(Vmax-Vmin)/1000:Vmax;
 			w = vehicle.s * v;
 			[T, Q] = self.Find(self.air.TrueSpeed(v), w);
+			Ft = T;
+			Fq = vehicle.s*Q;
+			Fe = Ft-Fq;
+			[~, k0] = min(abs(Fe));
+
 			figure();
 			hold('on');
 			grid('on');
 			title(sprintf('Fan Forces vs Vehicle Velocity r=%.2f', vehicle.r));
 			xlabel('Velocity (m/s)');
 			ylabel('Force (N)');
-			plot(v, T, 'LineWidth', 2);
-			plot(v, vehicle.s*Q, 'LineWidth', 2);
-			legend('Thrust', 'Torque', 'Location', 'Best');
+			plot(v, Ft, 'LineWidth', 2);
+			plot(v, Fq, 'LineWidth', 2);
+			plot(v, Fe, 'LineWidth', 2);
+			plot(v(k0), Ft(k0), 'x', 'LineWidth', 2);
+			xlim([Vmin v(k0)*1.1]);
+			legend('Thrust', 'Torque', 'Excess', 'Top', 'Location', 'Best');
 		end
 	end
 end
