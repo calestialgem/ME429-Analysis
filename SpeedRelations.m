@@ -11,7 +11,7 @@ function v_range = SpeedRelations(vehicle)
 	xlabel('Velocity (m/s)');
 	xlim(v_bounds);
 	ylabel('Acceleration (m/s^2)');
-	title(sprintf('Acceleration vs Speed SR=%.2f', vehicle.SR));
+	title(sprintf('Acceleration vs Speed Z=%.2f', vehicle.Z));
 	figure();
 	hold('on');
 	grid('on');
@@ -22,6 +22,6 @@ function v_range = SpeedRelations(vehicle)
 	xlabel('Velocity (m/s)');
 	xlim(v_bounds);
 	ylabel('Force (N)');
-	title(sprintf('Force vs Speed SR=%.2f', vehicle.SR));
+	title(sprintf('Force vs Speed Z=%.2f', vehicle.Z));
 	legend('Thrust', 'Torque', 'Bearing Friction', 'Net', 'Location', 'Best');
 end

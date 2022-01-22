@@ -17,11 +17,11 @@ fan = GetAPC14x7E();
 fprintf(fileID, fan.RootMeanSquare());
 
 air = Air(5);
-[v_top, SR_top] = SearchTransmissionRatios(air, fan, 0.1:0.01:5);
-vehicle = Vehicle(air, fan, SR_top);
+[v_top, Z_top] = SearchTransmissionRatios(air, fan, 0.1:0.01:5);
+vehicle = Vehicle(air, fan, Z_top);
 v = Simulate(vehicle, 100);
 [v_min, v_max] = vehicle.SpeedBoundary();
-fprintf(fileID, 'SR=%.2f v_top=%.1fm/s B=[%.1f, %.1f]m/s\n', SR_top, v_top, v_min, v_max);
+fprintf(fileID, 'Z=%.2f v_top=%.1fm/s B=[%.1f, %.1f]m/s\n', Z_top, v_top, v_min, v_max);
 
 SpeedRelations(vehicle);
 
