@@ -1,2 +1,2 @@
 Root Mean Squares Ct=4.314119e-04 Cq=1.276028e-03
-r=1.71 Vt=17.5m/s B=[5.0, 79.9]m/s
+t=1.71 Vt=17.5m/s B=[5.0, 79.9]m/s

@@ -1,21 +1,21 @@
 classdef Vehicle
 	properties
-		fan Fan
 		air Air
+		fan Fan
 		L
 		Dw
 		Mw
 		Iw
 		m
 		b
-		r
+		t
 		i
 		s
 	end
 	methods
-		function self = Vehicle(fan, air, r)
-			self.fan = fan;
+		function self = Vehicle(air, fan, t)
 			self.air = air;
+			self.fan = fan;
 			L = 35e-2;
 			self.Dw = 0.15*L;
 			m = 350e-3;
@@ -31,20 +31,9 @@ classdef Vehicle
 			bearingLoad = m + fan.m;
 			oilViscosity = 0.35;
 			self.b = 4*pi*oilViscosity*shaftRadius^3*bearingLength/bearingClearence/self.Dw;
-			self.r = r;
-			self = self.Findi();
-			self = self.Finds();
-		end
-		function self = Findi(self)
-			self.i = self.m+(12*self.Iw+4*self.fan.I/self.r^2)/self.Dw^2;
-		end
-		function self = Finds(self)
-			self.s = 2/(self.r*self.Dw);
-		end
-		function self = Setr(self, r)
-			self.r = r;
-			self = self.Findi();
-			self = self.Finds();
+			self.t = t;
+			self.i = self.m+(12*self.Iw+4*self.fan.I/self.t^2)/self.Dw^2;
+			self.s = 2/(self.t*self.Dw);
 		end
 		function [a, Vt, T, Q, B, F] = Acceleration(self, V)
 			Vt = self.air.TrueSpeed(V);

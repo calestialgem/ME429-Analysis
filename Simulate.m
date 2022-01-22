@@ -8,14 +8,14 @@ function v = Simulate(vehicle, Tf)
 	plot(t, v, 'LineWidth', 2);
 	xlabel('Time (s)');
 	ylabel('Velocity (m/s)');
-	title(sprintf('Speed Diagram r=%.2f', vehicle.r));
+	title(sprintf('Speed Diagram t=%.2f', vehicle.t));
 	figure();
 	hold('on');
 	grid('on');
 	plot(t, A, 'LineWidth', 2);
 	xlabel('Time (s)');
 	ylabel('Acceleration (m/s^2)');
-	title(sprintf('Acceleration Diagram r=%.2f', vehicle.r));
+	title(sprintf('Acceleration Diagram t=%.2f', vehicle.t));
 	figure();
 	hold('on');
 	grid('on');
@@ -25,6 +25,6 @@ function v = Simulate(vehicle, Tf)
 	plot(t, F, 'LineWidth', 2);
 	xlabel('Time (s)');
 	ylabel('Force (N)');
-	title(sprintf('Force Diagram r=%.2f', vehicle.r));
+	title(sprintf('Force Diagram t=%.2f', vehicle.t));
 	legend('Thrust', 'Torque', 'Bearing Friction', 'Net', 'Location', 'Best');
 end

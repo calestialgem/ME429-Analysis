@@ -149,7 +149,7 @@ classdef Fan
 			figure();
 			hold('on');
 			grid('on');
-			title(sprintf('Fan Forces vs Vehicle Velocity r=%.2f', vehicle.r));
+			title(sprintf('Fan Forces vs Vehicle Velocity t=%.2f', vehicle.t));
 			xlabel('Velocity (m/s)');
 			ylabel('Force (N)');
 			plot(v, Ft, 'LineWidth', 2);

@@ -1,7 +1,7 @@
-function [Vt, rt] = SearchTransmissionRatios(vehicle, rr)
+function [Vt, rt] = SearchTransmissionRatios(air, fan, rr)
 	Vr = zeros(size(rr));
 	for k = 1:length(rr)
-		vehicle = vehicle.Setr(rr(k));
+		vehicle = Vehicle(air, fan, rr(k));
 		[Vmin, Vmax] = vehicle.SpeedBoundary();
 		Vr(k) = BisectionMethod(@(V) vehicle.Acceleration(V), Vmin, Vmax*1000, 1e-6, 1e3);
 	end
