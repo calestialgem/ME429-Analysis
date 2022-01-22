@@ -23,7 +23,8 @@ classdef Vehicle
 			m = m_body+fan.m+m_wheel*3;
 			self.mul_a = (m+(12*I_wheel+4*self.fan.I/self.Z^2)/d^2)^-1;
 			self.mul_q = 2/(self.Z*d);
-			u = 0.4;
+			% https://www.engineeringtoolbox.com/dynamic-viscosity-motor-oils-d_1759.html
+			u = 0.63;
 			mul_u = 2*pi*u*self.mul_q;
 			c_r = 6.35e-3/2;
 			c_c = 1e-3;
