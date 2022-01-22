@@ -23,7 +23,7 @@ fprintf(fileID, fan.RootMeanSquare());
 % [v_min, v_max] = vehicle.SpeedBoundary();
 % fprintf(fileID, 't=%.2f v_top=%.1fm/s B=[%.1f, %.1f]m/s\n', t_top, v_top, v_min, v_max);
 
-SearchWindSpeeds(fan, 1:0.01:10, 0.1, 5);
+SearchWindSpeeds(fan, 1:0.01:10, 1.71, 1.71);
 
 toc();
 
