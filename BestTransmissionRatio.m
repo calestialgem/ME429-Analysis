@@ -1,7 +1,7 @@
-function [t_best, v_top] = BestTransmissionRatio(air, fan, t_min, t_max)
-	[t_best, v_top] = fminbnd(@(t) -TopSpeed(Vehicle(air, fan, t)), t_min, t_max);
+function [Z_best, v_top] = BestTransmissionRatio(air, fan, Z_min, Z_max)
+	[Z_best, v_top] = fminbnd(@(Z) -TopSpeed(Vehicle(air, fan, Z)), Z_min, Z_max);
 	if isnan(v_top)
-		t_best = NaN;
+		Z_best = NaN;
 	else
 		v_top = -v_top;
 	end
