@@ -44,9 +44,9 @@ classdef Vehicle
 			F = T+Q+B;
 			a = F/self.i;
 		end
-		function [Vmin, Vmax] = SpeedBoundary(self)
-			Vmin = max(self.air.V, self.fan.w_min/self.s);
-			Vmax = self.fan.w_max/self.s;
+		function [v_min, v_max] = SpeedBoundary(self)
+			v_min = max(self.air.V, self.fan.w_min/self.s);
+			v_max = self.fan.w_max/self.s;
 		end
 	end
 end

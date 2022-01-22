@@ -17,12 +17,12 @@ fan = GetAPC14x7E(air);
 % fan.PlotFitJ();
 fprintf(fileID, fan.RootMeanSquare());
 
-[Vt, rt] = SearchTransmissionRatios(air, fan, 0.1:0.01:5);
-vehicle = Vehicle(air, fan, rt);
+[v_top, t_top] = SearchTransmissionRatios(air, fan, 0.1:0.01:5);
+vehicle = Vehicle(air, fan, t_top);
 fan.PlotFitTQ(vehicle);
 v = Simulate(vehicle, 100);
-[Vmin, Vmax] = vehicle.SpeedBoundary();
-fprintf(fileID, 't=%.2f Vt=%.1fm/s B=[%.1f, %.1f]m/s\n', rt, Vt, Vmin, Vmax);
+[v_min, v_max] = vehicle.SpeedBoundary();
+fprintf(fileID, 't=%.2f v_top=%.1fm/s B=[%.1f, %.1f]m/s\n', t_top, v_top, v_min, v_max);
 
 if fclose(fileID) ~= 0
 	fprintf('Error while closing the file %s!\n', fileName);
