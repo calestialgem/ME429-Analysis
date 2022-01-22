@@ -14,6 +14,8 @@ end
 tic();
 
 fan = GetAPC14x7E();
+fan.PlotFitJ();
+fan.PlotFitw();
 fprintf(fileID, fan.RootMeanSquare());
 
 air = Air(5);

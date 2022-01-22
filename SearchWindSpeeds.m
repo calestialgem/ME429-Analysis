@@ -13,6 +13,7 @@ function SearchWindSpeeds(fan, v_w_range, Z_min, Z_max)
 	xlabel('v_w (m/s)');
 	ylabel('Z_{best}');
 	plot(v_w_range, Z_best_range, 'LineWidth', 2);
+	saveas(gcf, 'Best Transmission Ratio vs Wind Speed', 'jpeg');
 	figure();
 	hold('on');
 	grid('on');
@@ -20,4 +21,5 @@ function SearchWindSpeeds(fan, v_w_range, Z_min, Z_max)
 	xlabel('v_w (m/s)');
 	ylabel('v_{top} (m/s)');
 	plot(v_w_range, v_top_range, 'LineWidth', 2);
+	saveas(gcf, 'Top Speed vs Wind Speed', 'jpeg');
 end

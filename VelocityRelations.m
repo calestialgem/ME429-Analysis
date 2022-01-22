@@ -14,6 +14,7 @@ function v_range = VelocityRelations(vehicle)
 	ylabel('a (m/s^2)');
 	xlabel('v (m/s)');
 	title(sprintf('Acceleration vs Velocity Z=%.2f', vehicle.Z));
+	saveas(gcf, 'Acceleration vs Velocity', 'jpeg');
 	figure();
 	hold('on');
 	grid('on');
@@ -25,4 +26,5 @@ function v_range = VelocityRelations(vehicle)
 	xlabel('v (m/s)');
 	title(sprintf('Forces vs Velocity Z=%.2f', vehicle.Z));
 	legend('F_t', 'F_q', 'F_k', 'F_{net}', 'Location', 'Best');
+	saveas(gcf, 'Forces vs Velocity', 'jpeg');
 end

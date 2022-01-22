@@ -14,4 +14,5 @@ function [v_top, Z_top] = SearchTransmissionRatios(air, fan, Z_range)
 	xlabel('Z');
 	ylabel('v_{top} (m/s)');
 	plot(Z_range, v_range, 'LineWidth', 2);
+	saveas(gcf, 'Top Speed vs Transmission Ratio', 'jpeg');
 end
