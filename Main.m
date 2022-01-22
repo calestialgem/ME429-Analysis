@@ -23,6 +23,8 @@ v = Simulate(vehicle, 100);
 [v_min, v_max] = vehicle.SpeedBoundary();
 fprintf(fileID, 'SR=%.2f v_top=%.1fm/s B=[%.1f, %.1f]m/s\n', SR_top, v_top, v_min, v_max);
 
+SpeedRelations(vehicle);
+
 SearchWindSpeeds(fan, 1:0.1:10, 1, 5);
 
 toc();
