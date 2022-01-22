@@ -7,7 +7,6 @@ classdef Vehicle
 		Mw
 		Iw
 		m
-		b
 		SR
 		i
 		s
@@ -25,23 +24,16 @@ classdef Vehicle
 			self.Iw = self.Mw*self.Dw^2/8;
 			self.m = m + fan.m + self.Mw;
 			self.L = L;
-			shaftRadius = 6.35e-3/2;
-			bearingClearence = 1e-3;
-			bearingLength = 10e-3;
-			bearingLoad = m + fan.m;
-			oilViscosity = 0.35;
-			self.b = 4*pi*oilViscosity*shaftRadius^3*bearingLength/bearingClearence/self.Dw;
 			self.SR = SR;
 			self.i = self.m+(12*self.Iw+4*self.fan.I/self.SR^2)/self.Dw^2;
 			self.s = 2/(self.SR*self.Dw);
 		end
-		function [a, Vt, T, Q, B, F] = Acceleration(self, V)
+		function [a, Vt, T, Q, F] = Acceleration(self, V)
 			Vt = self.air.TrueSpeed(V);
 			w = self.s*V;
 			[T, Q] = self.fan.Find(self.air, Vt, w);
 			Q = -self.s*Q;
-			B = -self.b*w;
-			F = T+Q+B;
+			F = T+Q;
 			a = F/self.i;
 		end
 		function [v_min, v_max] = SpeedBoundary(self)
