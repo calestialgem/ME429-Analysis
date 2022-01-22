@@ -38,7 +38,7 @@ classdef Vehicle
 		function [a, Vt, T, Q, B, F] = Acceleration(self, V)
 			Vt = self.air.TrueSpeed(V);
 			w = self.s*V;
-			[T, Q] = self.fan.Find(Vt, w);
+			[T, Q] = self.fan.Find(self.air, Vt, w);
 			Q = -self.s*Q;
 			B = -self.b*w;
 			F = T+Q+B;

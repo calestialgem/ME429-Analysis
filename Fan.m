@@ -1,7 +1,6 @@
 classdef Fan
 	properties
 		Name
-		air
 		m
 		D
 		I
@@ -16,9 +15,8 @@ classdef Fan
 		Cq_rms
 	end
 	methods
-		function self = Fan(name, air, m, D, w_min, w_max, w_J_data, Ct_data, Cq_data)
+		function self = Fan(name, m, D, w_min, w_max, w_J_data, Ct_data, Cq_data)
 			self.Name = name;
-			self.air = air;
 			self.m = m;
 			self.D = D;
 			self.I = self.m*self.D^2/12;
@@ -32,10 +30,10 @@ classdef Fan
 			self.Ct_rms = sqrt(sum((self.Ct(w_J_data)-Ct_data).^2))/size(w_J_data, 1)/(max(Ct_data)-min(Ct_data));
 			self.Cq_rms = sqrt(sum((self.Cq(w_J_data)-Cq_data).^2))/size(w_J_data, 1)/(max(Cq_data)-min(Cq_data));
 		end
-		function [T, Q] = Find(self, V, w)
+		function [T, Q] = Find(self, air, V, w)
 			J = V./(w.*self.D);
-			T = (self.air.R * self.D^4) * w.^2 .* self.Ct(w, J);
-			Q = (self.air.R * self.D^5) * w.^2 .* self.Cq(w, J);
+			T = (air.R * self.D^4) * w.^2 .* self.Ct(w, J);
+			Q = (air.R * self.D^5) * w.^2 .* self.Cq(w, J);
 		end
 		function RMS = RootMeanSquare(self)
 			RMS = sprintf('Root Mean Squares Ct=%e Cq=%e\n', self.Ct_rms, self.Cq_rms);
@@ -135,29 +133,6 @@ classdef Fan
 				sprintf('Data J=%.2f', J_data(1)),...
 				sprintf('Data J=%.2f', J_data(J_middle)),...
 				sprintf('Data J=%.2f', J_data(end)), 'Location', 'Best');
-		end
-		function PlotFitTQ(self, vehicle)
-			[Vmin, Vmax] = vehicle.SpeedBoundary();
-			v = Vmin:(Vmax-Vmin)/1000:Vmax;
-			w = vehicle.s * v;
-			[T, Q] = self.Find(self.air.TrueSpeed(v), w);
-			Ft = T;
-			Fq = vehicle.s*Q;
-			Fe = Ft-Fq;
-			[~, k0] = min(abs(Fe));
-
-			figure();
-			hold('on');
-			grid('on');
-			title(sprintf('Fan Forces vs Vehicle Velocity t=%.2f', vehicle.t));
-			xlabel('Velocity (m/s)');
-			ylabel('Force (N)');
-			plot(v, Ft, 'LineWidth', 2);
-			plot(v, Fq, 'LineWidth', 2);
-			plot(v, Fe, 'LineWidth', 2);
-			plot(v(k0), Ft(k0), 'x', 'LineWidth', 2);
-			xlim([Vmin v(k0)*1.1]);
-			legend('Thrust', 'Torque', 'Excess', 'Top', 'Location', 'Best');
 		end
 	end
 end
