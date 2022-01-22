@@ -18,13 +18,13 @@ classdef Vehicle
 			R_wheel = 0.6e3;
 			m_wheel = d^2*pi/4*t_wheel*R_wheel;
 			I_wheel = m_wheel*d^2/8;
-			m = 350e-3 + fan.m + m_wheel*3;
-			shaftRadius = 6.35e-3/2;
-			bearingClearence = 1e-3;
-			bearingLength = 5e-3;
-			bearingLoad = m + fan.m;
-			oilViscosity = 0.35;
-			self.mul_k = 4*pi*oilViscosity*shaftRadius^3*bearingLength/bearingClearence/d;
+			m_body = 350e-3;
+			m = m_body+fan.m+m_wheel*3;
+			k_r = 6.35e-3/2;
+			k_c = 1e-3;
+			k_l = 5e-3;
+			k_u = 0.35;
+			self.mul_k = 4*pi*k_u*k_r^3*k_l/k_c/d;
 			self.mul_a = (m+(12*I_wheel+4*self.fan.I/self.Z^2)/d^2)^-1;
 			self.mul_q = 2/(self.Z*d);
 		end
