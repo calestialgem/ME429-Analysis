@@ -8,14 +8,14 @@ function v_range = Simulate(vehicle, Tf)
 	plot(time, v_range, 'LineWidth', 2);
 	xlabel('Time (s)');
 	ylabel('Velocity (m/s)');
-	title(sprintf('Speed Diagram t=%.2f', vehicle.t));
+	title(sprintf('Speed Diagram SR=%.2f', vehicle.SR));
 	figure();
 	hold('on');
 	grid('on');
 	plot(time, a_range, 'LineWidth', 2);
 	xlabel('Time (s)');
 	ylabel('Acceleration (m/s^2)');
-	title(sprintf('Acceleration Diagram t=%.2f', vehicle.t));
+	title(sprintf('Acceleration Diagram SR=%.2f', vehicle.SR));
 	figure();
 	hold('on');
 	grid('on');
@@ -25,6 +25,6 @@ function v_range = Simulate(vehicle, Tf)
 	plot(time, F_range, 'LineWidth', 2);
 	xlabel('Time (s)');
 	ylabel('Force (N)');
-	title(sprintf('Force Diagram t=%.2f', vehicle.t));
+	title(sprintf('Force Diagram SR=%.2f', vehicle.SR));
 	legend('Thrust', 'Torque', 'Bearing Friction', 'Net', 'Location', 'Best');
 end

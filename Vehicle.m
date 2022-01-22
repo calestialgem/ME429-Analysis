@@ -8,12 +8,12 @@ classdef Vehicle
 		Iw
 		m
 		b
-		t
+		SR
 		i
 		s
 	end
 	methods
-		function self = Vehicle(air, fan, t)
+		function self = Vehicle(air, fan, SR)
 			self.air = air;
 			self.fan = fan;
 			L = 35e-2;
@@ -31,9 +31,9 @@ classdef Vehicle
 			bearingLoad = m + fan.m;
 			oilViscosity = 0.35;
 			self.b = 4*pi*oilViscosity*shaftRadius^3*bearingLength/bearingClearence/self.Dw;
-			self.t = t;
-			self.i = self.m+(12*self.Iw+4*self.fan.I/self.t^2)/self.Dw^2;
-			self.s = 2/(self.t*self.Dw);
+			self.SR = SR;
+			self.i = self.m+(12*self.Iw+4*self.fan.I/self.SR^2)/self.Dw^2;
+			self.s = 2/(self.SR*self.Dw);
 		end
 		function [a, Vt, T, Q, B, F] = Acceleration(self, V)
 			Vt = self.air.TrueSpeed(V);
