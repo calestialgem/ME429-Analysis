@@ -1,10 +1,13 @@
-function SearchWindSpeeds(fan, v_w_range, Z_min, Z_max, F_d)
+function SearchWindSpeeds(fan, v_w_range, Z_fixed, Z_min, Z_max, F_d)
 	Z_best_range = zeros(size(v_w_range));
 	v_top_range = zeros(size(v_w_range));
+	v_fixed_range = zeros(size(v_w_range));
 	for k = 1:length(v_w_range)
-		[Z_best, v_top] = BestTransmissionRatio(Air(v_w_range(k)), fan, Z_min, Z_max, F_d);
+		air = Air(v_w_range(k));
+		[Z_best, v_top] = BestTransmissionRatio(air, fan, Z_min, Z_max, F_d);
 		Z_best_range(k) = Z_best;
 		v_top_range(k) = v_top;
+		v_fixed_range(k) = TopSpeed(Vehicle(air, fan, Z_fixed, F_d));
 	end
 	figure();
 	hold('on');
@@ -21,5 +24,7 @@ function SearchWindSpeeds(fan, v_w_range, Z_min, Z_max, F_d)
 	xlabel('v_w (m/s)');
 	ylabel('v_{top} (m/s)');
 	plot(v_w_range, v_top_range, 'LineWidth', 2);
+	plot(v_w_range, v_fixed_range, 'LineWidth', 2);
+	legend('Z=Z_{best}(v_w)', sprintf('Z=%.2f', Z_fixed), 'Location', 'Best');
 	saveas(gcf, 'Top Speed vs Wind Speed', 'jpeg');
 end

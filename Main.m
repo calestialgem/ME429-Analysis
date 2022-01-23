@@ -29,7 +29,7 @@ fprintf(fileID, 'Z=%.2f v_top=%.1fm/s B=[%.1f, %.1f]m/s\n', Z_best, v_top, v_min
 
 VelocityRelations(vehicle);
 
-SearchWindSpeeds(fan, 1:0.1:10, 1, 5, F_d);
+SearchWindSpeeds(fan, 1:0.1:10, Z_best, 1, 5, F_d);
 
 toc();
 
