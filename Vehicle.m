@@ -20,7 +20,13 @@ classdef Vehicle
 			self.F_d = F_d;
 			m_wheel = 10e-3;
 			I_wheel = m_wheel*self.d^2/8;
-			m_body = 350e-3;
+			% https://www.3d4makers.com/products/pla-filament
+			R_pla = 1250;
+			V_pla = 43864.018e-9;
+			% https://link.springer.com/article/10.1007/s00226-015-0700-5
+			R_balsa = (100+250)/2;
+			V_balsa = 39578.46e-9;
+			m_body = R_pla*V_pla+R_balsa*V_balsa;
 			m = m_body+fan.m+m_wheel*3;
 			self.mul_a = (m+(12*I_wheel+4*self.fan.I/self.Z^2)/self.d^2)^-1;
 			% https://www.grainger.com/know-how/equipment-information/kh-types-of-belt-drives-efficiency
