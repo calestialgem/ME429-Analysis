@@ -7,7 +7,7 @@ classdef Vehicle
 		F_d
 		mul_a
 		mul_q
-		mul_k
+		mul_s
 		mul_c
 	end
 	methods
@@ -30,26 +30,25 @@ classdef Vehicle
 			self.mul_q = 2/(n*self.Z*self.d);
 			% https://www.engineeringtoolbox.com/dynamic-viscosity-motor-oils-d_1759.html
 			u = 0.63;
-			mul_u = 2*pi*u*self.mul_q;
+			s_r = 6.35e-3/2;
+			s_c = 1e-3;
+			s_l = 10e-3;
+			self.mul_s = 4*pi*u*s_r^3*s_l/s_c*4/self.d;
 			c_r = 6.35e-3/2;
 			c_c = 1e-3;
 			c_l = 87.5e-3;
-			self.mul_c = mul_u*c_r^3*c_l/c_c;
-			k_r = 6.35e-3/2;
-			k_c = 1e-3;
-			k_l = 10e-3;
-			self.mul_k = self.Z*mul_u*k_r^3*k_l/k_c;
+			self.mul_c = 2*pi*u*c_r^3*c_l/c_c*self.mul_q;
 		end
-		function [a, v_t, F_t, F_q, F_c, F_k, F_d, F_net] = Acceleration(self, v)
+		function [a, v_t, F_t, F_d, F_q, F_s, F_c, F_net] = Acceleration(self, v)
 			v_t = self.air.TrueSpeed(v);
 			w_b = 2/self.d*v;
 			w_p = w_b/self.Z;
 			[F_t, T_q] = self.fan.Find(self.air, v_t, w_p);
-			F_q = self.mul_q*T_q;
-			F_c = self.mul_c*w_p;
-			F_k = self.mul_k*w_b;
 			F_d = self.F_d(v_t);
-			F_net = F_t-F_q-F_c-F_k-F_d;
+			F_q = self.mul_q*T_q;
+			F_s = self.mul_s*w_b;
+			F_c = self.mul_c*w_p;
+			F_net = F_t-F_q-F_s-F_c-F_d;
 			a = F_net*self.mul_a;
 		end
 		function [v_min, v_max] = SpeedBoundary(self)
