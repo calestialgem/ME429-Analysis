@@ -1,6 +1,5 @@
 function F_d = DragForce(fileID)
 	DragForces = [
-		0 0;
 		1 0.0056771236;
 		2 0.019862027;
 		3 0.044653886;
@@ -22,7 +21,9 @@ function F_d = DragForce(fileID)
 		19 1.5518665;
 		20 2.0525466
 	];
-	F_d = fit(DragForces(:, 1), DragForces(:, 2), 'poly9', 'Normalize', 'on');
+	c_d_data = DragForces(:, 2) ./ DragForces(:, 1).^2;
+	c_d = mean(c_d_data);
+	F_d = @(v_t) c_d*v_t.^2;
 	fprintf(fileID, 'Drag Root Mean Square Error: %e\n', sqrt(sum((F_d(DragForces(:, 1))-DragForces(:, 2)).^2))/size(DragForces, 1)/(max(DragForces(:, 1))-min(DragForces(:, 1))));
 	v_w_range = 0:0.1:max(DragForces(:, 1));
 	figure();
