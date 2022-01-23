@@ -21,11 +21,11 @@ fprintf(fileID, fan.RootMeanSquare());
 F_d = DragForce(fileID);
 
 air = Air(5);
-[v_top, Z_top] = SearchTransmissionRatios(air, fan, 0.1:0.01:5, F_d);
-vehicle = Vehicle(air, fan, Z_top, F_d);
+[v_top, Z_best] = SearchTransmissionRatios(air, fan, 0.1:0.01:5, F_d);
+vehicle = Vehicle(air, fan, Z_best, F_d);
 v = Simulate(vehicle, 100);
 [v_min, v_max] = vehicle.SpeedBoundary();
-fprintf(fileID, 'Z=%.2f v_top=%.1fm/s B=[%.1f, %.1f]m/s\n', Z_top, v_top, v_min, v_max);
+fprintf(fileID, 'Z=%.2f v_top=%.1fm/s B=[%.1f, %.1f]m/s\n', Z_best, v_top, v_min, v_max);
 
 VelocityRelations(vehicle);
 
