@@ -1,7 +1,7 @@
-function [v_top, Z_top] = SearchTransmissionRatios(air, fan, Z_range)
+function [v_top, Z_top] = SearchTransmissionRatios(air, fan, Z_range, F_d)
 	v_range = zeros(size(Z_range));
 	for k = 1:length(Z_range)
-		vehicle = Vehicle(air, fan, Z_range(k));
+		vehicle = Vehicle(air, fan, Z_range(k), F_d);
 		[v_min, v_max] = vehicle.SpeedBoundary();
 		v_range(k) = BisectionMethod(@(v) vehicle.Acceleration(v), v_min, v_max, 1e-6, 1e3);
 	end

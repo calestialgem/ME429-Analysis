@@ -1,8 +1,8 @@
-function SearchWindSpeeds(fan, v_w_range, Z_min, Z_max)
+function SearchWindSpeeds(fan, v_w_range, Z_min, Z_max, F_d)
 	Z_best_range = zeros(size(v_w_range));
 	v_top_range = zeros(size(v_w_range));
 	for k = 1:length(v_w_range)
-		[Z_best, v_top] = BestTransmissionRatio(Air(v_w_range(k)), fan, Z_min, Z_max);
+		[Z_best, v_top] = BestTransmissionRatio(Air(v_w_range(k)), fan, Z_min, Z_max, F_d);
 		Z_best_range(k) = Z_best;
 		v_top_range(k) = v_top;
 	end

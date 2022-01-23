@@ -3,16 +3,18 @@ classdef Vehicle
 		air Air
 		fan Fan
 		Z
+		F_d
 		mul_a
 		mul_q
 		mul_k
 		mul_c
 	end
 	methods
-		function self = Vehicle(air, fan, Z)
+		function self = Vehicle(air, fan, Z, F_d)
 			self.air = air;
 			self.fan = fan;
 			self.Z = Z;
+			self.F_d = F_d;
 			L = 35e-2;
 			d = 0.15*L;
 			t_wheel = 10e-3;
@@ -35,7 +37,7 @@ classdef Vehicle
 			k_l = 10e-3;
 			self.mul_k = self.Z*mul_u*k_r^3*k_l/k_c;
 		end
-		function [a, v_t, F_t, F_q, F_c, F_k, F_net] = Acceleration(self, v)
+		function [a, v_t, F_t, F_q, F_c, F_k, F_d, F_net] = Acceleration(self, v)
 			v_t = self.air.TrueSpeed(v);
 			w_c = self.mul_q*v;
 			w_k = self.Z*w_c;
@@ -43,7 +45,8 @@ classdef Vehicle
 			F_q = self.mul_q*T_q;
 			F_c = self.mul_c*w_c;
 			F_k = self.mul_k*w_k;
-			F_net = F_t-F_q-F_c-F_k;
+			F_d = self.F_d(v_t);
+			F_net = F_t-F_q-F_c-F_k-F_d;
 			a = F_net*self.mul_a;
 		end
 		function [v_min, v_max] = SpeedBoundary(self)
