@@ -22,6 +22,7 @@ F_d = DragForce(fileID);
 
 air = Air(5);
 [v_top, Z_best] = SearchTransmissionRatios(air, fan, 0.1:0.01:5, F_d);
+Z_best = 1.7;
 vehicle = Vehicle(air, fan, Z_best, F_d);
 v = Simulate(vehicle, 100);
 [v_min, v_max] = vehicle.SpeedBoundary();
