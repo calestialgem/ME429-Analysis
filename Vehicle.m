@@ -15,12 +15,10 @@ classdef Vehicle
 			self.air = air;
 			self.fan = fan;
 			L = 35e-2;
-			self.d = 0.15*L;
+			self.d = 47e-3;
 			self.Z = Z;
 			self.F_d = F_d;
-			t_wheel = 10e-3;
-			R_wheel = 0.6e3;
-			m_wheel = self.d^2*pi/4*t_wheel*R_wheel;
+			m_wheel = 10e-3;
 			I_wheel = m_wheel*self.d^2/8;
 			m_body = 350e-3;
 			m = m_body+fan.m+m_wheel*3;
