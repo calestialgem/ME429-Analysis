@@ -45,7 +45,7 @@ classdef Vehicle
 			F_q = self.mul_q*T_q;
 			F_c = self.mul_c*w_c;
 			F_k = self.mul_k*w_k;
-			F_d = self.F_d(v_t);
+			F_d = self.F_d(v_t)';
 			F_net = F_t-F_q-F_c-F_k-F_d;
 			a = F_net*self.mul_a;
 		end
