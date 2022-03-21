@@ -15,10 +15,10 @@ classdef Vehicle
 			self.air = air;
 			self.fan = fan;
 			L = 35e-2;
-			self.d = 47e-3;
+			self.d = 100e-3;
 			self.Z = Z;
 			self.F_d = F_d;
-			m_wheel = 10e-3;
+			m_wheel = 50e-3;
 			I_wheel = m_wheel*self.d^2/8;
 			% https://www.3d4makers.com/products/pla-filament
 			R_pla = 1250;
@@ -34,12 +34,12 @@ classdef Vehicle
 			self.mul_q = 2/(n*self.Z*self.d);
 			% https://www.engineeringtoolbox.com/dynamic-viscosity-motor-oils-d_1759.html
 			u = 0.63;
-			s_r = 6.35e-3/2;
-			s_c = 1e-3;
+			s_r = 3e-3/2;
+			s_c = 0.5e-3;
 			s_l = 10e-3;
 			self.mul_s = 4*pi*u*s_r^3*s_l/s_c*4/self.d;
-			c_r = 6.35e-3/2;
-			c_c = 1e-3;
+			c_r = 3e-3/2;
+			c_c = 0.5e-3;
 			c_l = 87.5e-3;
 			self.mul_c = 2*pi*u*c_r^3*c_l/c_c*self.mul_q;
 		end
