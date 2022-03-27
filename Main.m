@@ -27,7 +27,7 @@ Z_range = Z_min:Z_step:Z_max;
 fprintf(fileID, 'Z_min=%.3f Z_max=%.3f Z_step=%.3f\n', Z_min, Z_max, Z_step);
 
 air = Air(5);
-[v_top, Z_best] = SearchTransmissionRatios(air, fan, Z_range, F_d);
+[v_top, Z_best] = SearchTransmissionRatios(air, fan, 0.2:0.001:5, F_d);
 vehicle = Vehicle(air, fan, Z_best, F_d);
 v = Simulate(vehicle, 25);
 [v_min, v_max] = vehicle.SpeedBoundary();
