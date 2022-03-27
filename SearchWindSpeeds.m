@@ -1,10 +1,10 @@
-function SearchWindSpeeds(fan, v_w_range, Z_fixed, Z_min, Z_max, F_d)
+function SearchWindSpeeds(fan, v_w_range, Z_fixed, Z_range, F_d)
 	Z_best_range = zeros(size(v_w_range));
 	v_top_range = zeros(size(v_w_range));
 	v_fixed_range = zeros(size(v_w_range));
 	for k = 1:length(v_w_range)
 		air = Air(v_w_range(k));
-		[Z_best, v_top] = BestTransmissionRatio(air, fan, Z_min, Z_max, F_d);
+		[Z_best, v_top] = BestTransmissionRatio(air, fan, Z_range, F_d);
 		Z_best_range(k) = Z_best;
 		v_top_range(k) = v_top;
 		v_fixed_range(k) = TopSpeed(Vehicle(air, fan, Z_fixed, F_d));
