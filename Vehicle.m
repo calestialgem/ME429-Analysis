@@ -11,12 +11,12 @@ classdef Vehicle
 		mul_c
 	end
 	methods
-		function self = Vehicle(air, fan, Z, F_d)
+		function self = Vehicle(air, fan, d, F_d)
 			self.air = air;
 			self.fan = fan;
 			L = 35e-2;
-			self.d = 100e-3;
-			self.Z = Z;
+			self.d = d;
+			self.Z = 1;
 			self.F_d = F_d;
 			m_wheel = 50e-3;
 			I_wheel = m_wheel*self.d^2/8;

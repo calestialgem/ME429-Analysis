@@ -1,3 +1,0 @@
-r=1 Vt=58.2m/s B=[5.0, 46.7]m/s
-Best Bounded  r=1.52 Vt=69.6m/s B=[5.0, 71.0]m/s
-Best Ubounded r=1.43 Vt=73.8m/s B=[5.0, 66.8]m/s
