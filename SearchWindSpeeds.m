@@ -25,6 +25,6 @@ function SearchWindSpeeds(fan, v_w_range, d_fixed, d_range, F_d)
 	ylabel('v_{top} (m/s)');
 	plot(v_w_range, v_top_range, 'LineWidth', 2);
 	plot(v_w_range, v_fixed_range, 'LineWidth', 2);
-	legend('d=d_{best}(v_w)', sprintf('d=%.4f m', d_fixed), 'Location', 'Best');
+	legend('d=d_{best}(v_w)', sprintf('d=%.1f mm', 1e3*d_fixed), 'Location', 'Best');
 	saveas(gcf, 'Top Speed vs Wind Speed', 'jpeg');
 end

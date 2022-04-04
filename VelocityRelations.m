@@ -13,7 +13,7 @@ function v_range = VelocityRelations(vehicle)
 	plot(v_range(k_range), a_range(k_range), 'LineWidth', 2);
 	ylabel('a (m/s^2)');
 	xlabel('v (m/s)');
-	title(sprintf('Acceleration vs Velocity d=%.4f m', vehicle.d));
+	title(sprintf('Acceleration vs Velocity d=%.1f mm', 1e3*vehicle.d));
 	saveas(gcf, 'Acceleration vs Velocity', 'jpeg');
 	figure();
 	hold('on');
@@ -26,7 +26,7 @@ function v_range = VelocityRelations(vehicle)
 	plot(v_range(k_range), F_net_range(k_range), 'LineWidth', 2);
 	ylabel('F (N)');
 	xlabel('v (m/s)');
-	title(sprintf('Forces vs Velocity d=%.4f m', vehicle.d));
+	title(sprintf('Forces vs Velocity d=%.1f mm', 1e3*vehicle.d));
 	legend('F_t', 'F_d', 'F_q', 'F_s', 'F_c', 'F_{net}', 'Location', 'Best');
 	saveas(gcf, 'Forces vs Velocity', 'jpeg');
 end

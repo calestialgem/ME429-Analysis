@@ -24,14 +24,14 @@ d_min = 10e-3;
 d_max = 1000e-3;
 d_step = 0.1e-3;
 d_range = d_min:d_step:d_max;
-fprintf(fileID, 'd_min=%.4f m d_max=%.4f m d_step=%.4f m\n', d_min, d_max, d_step);
+fprintf(fileID, 'd_min=%.1f mm d_max=%.1f mm d_step=%.1f mm\n', 1e3*d_min, 1e3*d_max, 1e3*d_step);
 
 air = Air(5);
 [v_top, d_best] = SearchWheelDiameters(air, fan, d_range, F_d);
 vehicle = Vehicle(air, fan, d_best, F_d);
 v = Simulate(vehicle, 25);
 [v_min, v_max] = vehicle.SpeedBoundary();
-fprintf(fileID, 'd=%.4f m v_top=%.4fm/s B=[%.4f, %.4f]m/s\n', d_best, v_top, v_min, v_max);
+fprintf(fileID, 'd=%.1f mm v_top=%.3fm/s B=[%.3f, %.3f]m/s\n', 1e3*d_best, v_top, v_min, v_max);
 
 VelocityRelations(vehicle);
 
