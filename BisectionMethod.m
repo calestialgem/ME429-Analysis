@@ -25,7 +25,6 @@ function c = BisectionMethod(f, a, b, t, I)
 			ya = yc;
 		else
 			b = c;
-			yb = yc;
 		end
 	end
 	c = NaN;
