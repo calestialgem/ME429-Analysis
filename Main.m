@@ -29,7 +29,7 @@ fprintf(fileID, 'd_min=%.1f mm d_max=%.1f mm d_step=%.1f mm\n', 1e3*d_min, 1e3*d
 air = Air(5);
 [v_top, d_best] = SearchWheelDiameters(air, fan, d_range, F_d);
 vehicle = Vehicle(air, fan, d_best, F_d);
-v = Simulate(vehicle, 25);
+v = Simulate(vehicle, 30);
 [v_min, v_max] = vehicle.SpeedBoundary();
 fprintf(fileID, 'd=%.1f mm v_top=%.3fm/s B=[%.3f, %.3f]m/s\n', 1e3*d_best, v_top, v_min, v_max);
 
