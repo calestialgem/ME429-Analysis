@@ -52,7 +52,7 @@ classdef Fan
 			hold('on');
 			grid('on');
 			xlabel('J');
-			ylabel('Ct');
+			ylabel('c_t');
 			plot(J_range, self.Ct(w_data(1), J_range), '-r', 'LineWidth', 2);
 			plot(J_range, self.Ct(w_data(w_middle), J_range), '-g', 'LineWidth', 2);
 			plot(J_range, self.Ct(w_data(end), J_range), '-b', 'LineWidth', 2);
@@ -72,7 +72,7 @@ classdef Fan
 			hold('on');
 			grid('on');
 			xlabel('J');
-			ylabel('Cq');
+			ylabel('c_q');
 			plot(J_range, self.Cq(w_data(1), J_range), '-r', 'LineWidth', 2);
 			plot(J_range, self.Cq(w_data(w_middle), J_range), '-g', 'LineWidth', 2);
 			plot(J_range, self.Cq(w_data(end), J_range), '-b', 'LineWidth', 2);
@@ -102,7 +102,7 @@ classdef Fan
 			hold('on');
 			grid('on');
 			xlabel('w (rad/s)');
-			ylabel('Ct');
+			ylabel('c_t');
 			plot(w_range, self.Ct(w_range, J_data(1)), '-r', 'LineWidth', 2);
 			plot(w_range, self.Ct(w_range, J_data(J_middle)), '-g', 'LineWidth', 2);
 			plot(w_range, self.Ct(w_range, J_data(end)), '-b', 'LineWidth', 2);
@@ -122,7 +122,7 @@ classdef Fan
 			hold('on');
 			grid('on');
 			xlabel('w (rad/s)');
-			ylabel('Cq');
+			ylabel('c_q');
 			plot(w_range, self.Cq(w_range, J_data(1)), '-r', 'LineWidth', 2);
 			plot(w_range, self.Cq(w_range, J_data(J_middle)), '-g', 'LineWidth', 2);
 			plot(w_range, self.Cq(w_range, J_data(end)), '-b', 'LineWidth', 2);
