@@ -14,7 +14,7 @@ classdef Vehicle
 		function self = Vehicle(air, fan, d, F_d)
 			self.air = air;
 			self.fan = fan;
-			L = 35e-2;
+			% L = 35e-2;
 			self.d = d;
 			self.Z = 1;
 			self.F_d = F_d;
@@ -28,9 +28,9 @@ classdef Vehicle
 			V_balsa = 39578.46e-9;
 			m_body = R_pla*V_pla+R_balsa*V_balsa;
 			m = m_body+fan.m+m_wheel*3;
-			self.mul_a = (m+(12*I_wheel+4*self.fan.I/self.Z^2)/self.d^2)^-1;
 			% https://www.grainger.com/know-how/equipment-information/kh-types-of-belt-drives-efficiency
 			n = 0.9;
+			self.mul_a = (m+(12*I_wheel+4*self.fan.I/(n*self.Z^2))/self.d^2)^-1;
 			self.mul_q = 2/(n*self.Z*self.d);
 			% https://www.engineeringtoolbox.com/dynamic-viscosity-motor-oils-d_1759.html
 			u = 0.63;
