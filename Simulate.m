@@ -1,7 +1,7 @@
 function v_range = Simulate(vehicle, t_f)
     [v_min, ~] = vehicle.SpeedBoundary();
     [t_range, v_range] = RungeKuttaMethod(@(~, V) vehicle.Acceleration(V), 1e3, t_f, v_min);
-    [a_range, ~, F_t_range, F_d_range, F_q_range, F_s_range, F_c_range, F_net_range] = vehicle.Acceleration(v_range);
+    [a_range, ~, F_t_range, F_d_range, F_q_range, F_f_range, F_net_range] = vehicle.Acceleration(v_range);
     figure();
     hold('on');
     grid('on');
@@ -24,12 +24,11 @@ function v_range = Simulate(vehicle, t_f)
     plot(t_range, F_t_range, 'LineWidth', 2);
     plot(t_range, F_d_range, 'LineWidth', 2);
     plot(t_range, F_q_range, 'LineWidth', 2);
-    plot(t_range, F_s_range, 'LineWidth', 2);
-    plot(t_range, F_c_range, 'LineWidth', 2);
+    plot(t_range, F_f_range, 'LineWidth', 2);
     plot(t_range, F_net_range, 'LineWidth', 2);
     xlabel('t (s)');
     ylabel('F (N)');
     title(sprintf('Forces vs Time d=%.1f mm', 1e3 * vehicle.d));
-    legend('F_t', 'F_d', 'F_q', 'F_s', 'F_c', 'F_{net}', 'Location', 'Best');
+    legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
     saveas(gcf, 'Forces vs Time', 'jpeg');
 end
