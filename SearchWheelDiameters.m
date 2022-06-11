@@ -14,5 +14,5 @@ function [v_top, d_top] = SearchWheelDiameters(air, fan, d_range, F_d)
     xlabel('d (m)');
     ylabel('v_{top} (m/s)');
     plot(d_range, v_range, 'LineWidth', 2);
-    saveas(gcf, 'Top Speed vs Wheel Diameter', 'jpeg');
+    saveas(gcf, 'Top Speed vs Wheel Diameter', 'svg');
 end

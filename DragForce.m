@@ -34,5 +34,5 @@ function F_d = DragForce(fileID)
     title('Drag Force Fit');
     plot(v_w_range, F_d(v_w_range), 'LineWidth', 2);
     plot(DragForces(:, 1), DragForces(:, 2), 'x', 'LineWidth', 2);
-    saveas(gcf, 'Drag Force Fit', 'jpeg');
+    saveas(gcf, 'Drag Force Fit', 'svg');
 end

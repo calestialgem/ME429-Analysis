@@ -66,7 +66,7 @@ classdef Fan
                 sprintf('Data w=%.0frad/s', w_data(1)), ...
                 sprintf('Data w=%.0frad/s', w_data(w_middle)), ...
                 sprintf('Data w=%.0frad/s', w_data(end)), 'Location', 'Best');
-            saveas(gcf, 'Thrust Coefficient vs Advance Ratio', 'jpeg');
+            saveas(gcf, 'Thrust Coefficient vs Advance Ratio', 'svg');
             figure();
             title(self.Name + " Torque Coefficient vs J");
             hold('on');
@@ -86,7 +86,7 @@ classdef Fan
                 sprintf('Data w=%.0frad/s', w_data(1)), ...
                 sprintf('Data w=%.0frad/s', w_data(w_middle)), ...
                 sprintf('Data w=%.0frad/s', w_data(end)), 'Location', 'Best');
-            saveas(gcf, 'Torque Coefficient vs Advance Ratio', 'jpeg');
+            saveas(gcf, 'Torque Coefficient vs Advance Ratio', 'svg');
         end
         function PlotFitw(self)
             J_data = reshape(self.w_J_data(:, 2), [], 17);
@@ -116,7 +116,7 @@ classdef Fan
                 sprintf('Data J=%.2f', J_data(1)), ...
                 sprintf('Data J=%.2f', J_data(J_middle)), ...
                 sprintf('Data J=%.2f', J_data(end)), 'Location', 'Best');
-            saveas(gcf, 'Thrust Coefficient vs Angular Speed', 'jpeg');
+            saveas(gcf, 'Thrust Coefficient vs Angular Speed', 'svg');
             figure();
             title(self.Name + " Torque Coefficient vs w");
             hold('on');
@@ -136,7 +136,7 @@ classdef Fan
                 sprintf('Data J=%.2f', J_data(1)), ...
                 sprintf('Data J=%.2f', J_data(J_middle)), ...
                 sprintf('Data J=%.2f', J_data(end)), 'Location', 'Best');
-            saveas(gcf, 'Torque Coefficient vs Angular Speed', 'jpeg');
+            saveas(gcf, 'Torque Coefficient vs Angular Speed', 'svg');
         end
     end
 end

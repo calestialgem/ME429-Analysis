@@ -16,7 +16,7 @@ function SearchWindSpeeds(fan, v_w_range, d_fixed, d_range, F_d)
     xlabel('v_w (m/s)');
     ylabel('d_{best} (m)');
     plot(v_w_range, d_best_range, 'LineWidth', 2);
-    saveas(gcf, 'Best Wheel Diameter vs Wind Speed', 'jpeg');
+    saveas(gcf, 'Best Wheel Diameter vs Wind Speed', 'svg');
     figure();
     hold('on');
     grid('on');
@@ -26,5 +26,5 @@ function SearchWindSpeeds(fan, v_w_range, d_fixed, d_range, F_d)
     plot(v_w_range, v_top_range, 'LineWidth', 2);
     plot(v_w_range, v_fixed_range, 'LineWidth', 2);
     legend('d=d_{best}(v_w)', sprintf('d=%.1f mm', 1e3 * d_fixed), 'Location', 'Best');
-    saveas(gcf, 'Top Speed vs Wind Speed', 'jpeg');
+    saveas(gcf, 'Top Speed vs Wind Speed', 'svg');
 end
