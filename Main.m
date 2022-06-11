@@ -20,22 +20,22 @@ fprintf(fileID, fan.RootMeanSquare());
 
 F_d = DragForce(fileID);
 
-d_min = 10e-3;
-d_max = 1000e-3;
-d_step = 0.1e-3;
-d_range = d_min:d_step:d_max;
-fprintf(fileID, 'd_min=%.1f mm d_max=%.1f mm d_step=%.1f mm\n', 1e3 * d_min, 1e3 * d_max, 1e3 * d_step);
+Z_min = 0.5;
+Z_max = 2;
+Z_step = 0.01;
+Z_range = Z_min:Z_step:Z_max;
+fprintf(fileID, 'Z_min=%.3f Z_max=%.3f Z_step=%.3f\n', Z_min, Z_max, Z_step);
 
 air = Air(5);
-[v_top, d_best] = SearchWheelDiameters(air, fan, d_range, F_d);
-vehicle = Vehicle(air, fan, d_best, F_d);
+[v_top, Z_best] = SearchWheelDiameters(air, fan, Z_range, F_d);
+vehicle = Vehicle(air, fan, Z_best, F_d);
 v = Simulate(vehicle, 30);
 [v_min, v_max] = vehicle.SpeedBoundary();
-fprintf(fileID, 'd=%.1f mm v_top=%.3fm/s B=[%.3f, %.3f]m/s\n', 1e3 * d_best, v_top, v_min, v_max);
+fprintf(fileID, 'Z=%.3f mm v_top=%.3fm/s B=[%.3f, %.3f]m/s\n', Z_best, v_top, v_min, v_max);
 
 VelocityRelations(vehicle);
 
-SearchWindSpeeds(fan, 1:0.1:10, d_best, 70e-3:d_step:95e-3, F_d);
+SearchWindSpeeds(fan, 1:0.1:10, Z_best, Z_range, F_d);
 
 toc();
 

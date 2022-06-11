@@ -9,12 +9,11 @@ classdef Vehicle
         mul_q
     end
     methods
-        function self = Vehicle(air, fan, d, F_d)
+        function self = Vehicle(air, fan, Z, F_d)
             self.air = air;
             self.fan = fan;
-            % L = 35e-2;
-            self.d = d;
-            self.Z = 1;
+            self.d = 90e-3;
+            self.Z = Z;
             self.F_d = F_d;
             m = 300e-3;
             % https://www.grainger.com/know-how/equipment-information/kh-types-of-belt-drives-efficiency

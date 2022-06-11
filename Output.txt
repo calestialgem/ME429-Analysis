@@ -1,4 +1,4 @@
 Root Mean Squares Ct=4.314119e-04 Cq=1.276028e-03
 Drag Root Mean Square Error: 8.955316e-04
-d_min=10.0 mm d_max=1000.0 mm d_step=0.1 mm
-d=83.2 mm v_top=9.248m/s B=[5.000, 74.058]m/s
+Z_min=0.500 Z_max=2.000 Z_step=0.010
+Z=0.920 mm v_top=9.247m/s B=[5.000, 73.702]m/s

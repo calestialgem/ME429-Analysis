@@ -8,7 +8,7 @@ function v_range = Simulate(vehicle, t_f)
     plot(t_range, v_range, 'LineWidth', 2);
     xlabel('t (s)');
     ylabel('v (m/s)');
-    title(sprintf('Velocity vs Time d=%.1f mm', 1e3 * vehicle.d));
+    title(sprintf('Velocity vs Time Z=%.3f', vehicle.Z));
     saveas(gcf, 'Velocity vs Time', 'jpeg');
     figure();
     hold('on');
@@ -16,7 +16,7 @@ function v_range = Simulate(vehicle, t_f)
     plot(t_range, a_range, 'LineWidth', 2);
     xlabel('t (s)');
     ylabel('a (m/s^2)');
-    title(sprintf('Acceleration vs Time d=%.1f mm', 1e3 * vehicle.d));
+    title(sprintf('Acceleration vs Time Z=%.3f', vehicle.Z));
     saveas(gcf, 'Acceleration vs Time', 'jpeg');
     figure();
     hold('on');
@@ -28,7 +28,7 @@ function v_range = Simulate(vehicle, t_f)
     plot(t_range, F_net_range, 'LineWidth', 2);
     xlabel('t (s)');
     ylabel('F (N)');
-    title(sprintf('Forces vs Time d=%.1f mm', 1e3 * vehicle.d));
+    title(sprintf('Forces vs Time Z=%.3f', vehicle.Z));
     legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
     saveas(gcf, 'Forces vs Time', 'jpeg');
 end
