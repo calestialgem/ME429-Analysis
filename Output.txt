@@ -4,11 +4,11 @@ Experiments: e_t=29.797%, e_q=6.018%
 
 ________________________________________________________________________________
 Fixed Transmission Ratio d 90.0 mm
-Z_min=0.500 Z_max=2.000 Z_step=0.001
-Z=0.922 v_top=9.180m/s B=[5.000, 73.862]m/s
-Elapsed Time: 1073.1 s
+Z_min=0.780 Z_max=0.920 Z_step=0.000
+Z=0.902 v_top=8.615m/s B=[5.000, 72.284]m/s
+Elapsed Time: 1159.1 s
 ________________________________________________________________________________
 Fixed Wheel Diameter Z 1.000
-d_min=70.0 mm d_max=90.0 mm d_step=0.1 mm
-d=83.0 mm v_top=9.180m/s B=[5.000, 73.880]m/s
-Elapsed Time: 211.7 s
+d_min=70.0 mm d_max=82.0 mm d_step=0.0 mm
+d=81.2 mm v_top=8.615m/s B=[5.000, 72.286]m/s
+Elapsed Time: 1026.4 s

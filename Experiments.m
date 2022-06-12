@@ -23,7 +23,7 @@ function friction = Experiments(fileID)
     end
     F_f_h = F_diff(j - 1) + (F_diff(j) - F_diff(j - 1)) * (w_e - w(j - 1)) / (w(j) - w(j - 1));
     F_f_l = 5 * 9.81e-3;
-    friction = @(v) F_f_l + (v / air.V) * (F_f_h - F_f_l);
+    friction = @(v) F_f_l + (v / air.V).^2 * (F_f_h - F_f_l);
 
     if ~isempty(fileID)
         e_t = sqrt(sum((F_t_f - F_t).^2) / length(F_t)) / (max(F_t_f) - min(F_t_f));
@@ -40,7 +40,7 @@ function friction = Experiments(fileID)
         title("Friction Experiments");
         plot(v_range, friction(v_range), 'LineWidth', 2);
         plot([0 air.V], [F_f_l F_f_h], 'x', 'LineWidth', 2);
-        legend('Fit', 'Experiment', 'Location', 'Best');
+        legend('Approximation', 'Experiment', 'Location', 'Best');
         saveas(gcf, 'Friction Experiments', 'jpeg');
 
         w_range = 0:max(w) * 1.5e-3:max(w) * 1.5;

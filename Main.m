@@ -16,8 +16,8 @@ fan = GetAPC14x7E(fileID);
 drag = DragForce(fileID);
 friction = Experiments(fileID);
 
-analyze(fileID, Parameter(air, fan, drag, friction, 90e-3, 0.5:0.001:2, true))
-analyze(fileID, Parameter(air, fan, drag, friction, 1, 70e-3:0.1e-3:90e-3, false))
+analyze(fileID, Parameter(air, fan, drag, friction, 90e-3, 78e-2:0.01e-2:92e-2, true))
+analyze(fileID, Parameter(air, fan, drag, friction, 1, 70e-3:0.01e-3:82e-3, false))
 
 if fclose(fileID) ~= 0
     fprintf('Error while closing the file %s!\n', fileName);
