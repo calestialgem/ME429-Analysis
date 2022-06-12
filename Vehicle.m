@@ -5,16 +5,18 @@ classdef Vehicle
         d
         Z
         F_d
+        F_f
         mul_a
         mul_q
     end
     methods
-        function self = Vehicle(air, fan, Z, F_d)
+        function self = Vehicle(air, fan, Z, F_d, F_f)
             self.air = air;
             self.fan = fan;
             self.d = 90e-3;
             self.Z = Z;
             self.F_d = F_d;
+            self.F_f = F_f;
             m = 300e-3;
             % https://www.grainger.com/know-how/equipment-information/kh-types-of-belt-drives-efficiency
             n = 0.9;
@@ -28,7 +30,7 @@ classdef Vehicle
             [F_t, T_q] = self.fan.Find(self.air, v_t, w_p);
             F_d = self.F_d(v_t);
             F_q = self.mul_q * T_q;
-            F_f = 0.04905 + v / (20/3600e-3) * (0.0614214);
+            F_f = self.F_f(v);
             F_net = F_t - F_d - F_q - F_f;
             a = F_net * self.mul_a;
         end

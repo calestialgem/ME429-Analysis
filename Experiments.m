@@ -1,4 +1,4 @@
-function Experiments(fileID)
+function F_f = Experiments(fileID)
     fan = GetAPC14x7E();
     air = Air(20 * 1000/3600);
     V = [10 15 20];
@@ -12,6 +12,21 @@ function Experiments(fileID)
     e_t = sqrt(sum((F_t_f - F_t).^2) / length(F_t)) / (max(F_t_f) - min(F_t_f));
     e_q = sqrt(sum((T_q_f - T_q).^2) / length(T_q)) / (max(T_q_f) - min(T_q_f));
     fprintf(fileID, "Experiments: e_t=%.3f%%, e_q=%.3f%%\n", e_t * 100, e_q * 100);
+
+    n = 0.90;
+    Z = 1.25;
+    d = 90e-3;
+    w_e = air.V / (Z * d / 2);
+    F_q = T_q / (n * Z * d / 2);
+    F_diff = F_t - F_q;
+    for j = 2:length(F_diff)
+        if w_e < w(j)
+            break;
+        end
+    end
+    F_f_h = F_diff(j - 1) + (F_diff(j) - F_diff(j - 1)) * (w_e - w(j - 1)) / (w(j) - w(j - 1));
+    F_f_l = 5 * 9.81e-3;
+    F_f = @(v) F_f_l + (v / air.V) * (F_f_h - F_f_l);
 
     w_range = 0:max(w) * 1.5e-3:max(w) * 1.5;
     [F_t_range, T_q_range] = fan.Find(air, 0, w_range);
