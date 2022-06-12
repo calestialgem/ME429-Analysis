@@ -5,13 +5,13 @@ t_f   =  1.05 s
 v_f   =  5.64 m/s
 
 Initial Analysis:
-v_f   =  6.55 m/s
-e     = 16.20 %
+v_f   =  6.84 m/s
+e     = 21.36 %
 v_top = 11.22 m/s
 rel   =  2.02
 
 Revised Analysis:
-v_f   =  6.23 m/s
-e     = 10.52 %
+v_f   =  6.38 m/s
+e     = 13.10 %
 v_top =  8.67 m/s
 rel   =  1.56

@@ -17,7 +17,7 @@ classdef Vehicle
             self.friction = friction;
             self.d = d;
             self.Z = Z;
-            m = 300e-3;
+            m = 172e-3;
             % https://www.grainger.com/know-how/equipment-information/kh-types-of-belt-drives-efficiency
             n = 0.9;
             self.mul_a = (m + 4 * self.fan.I / (n * self.Z^2) / self.d^2)^ - 1;
