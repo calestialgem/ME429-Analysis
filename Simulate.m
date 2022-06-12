@@ -28,12 +28,17 @@ function v_f = Simulate(parameter, t_f)
         plot(t_range, F_t_range, 'LineWidth', 2);
         plot(t_range, F_d_range, 'LineWidth', 2);
         plot(t_range, F_q_range, 'LineWidth', 2);
-        plot(t_range, F_f_range, 'LineWidth', 2);
+        legends = ["F_t", "F_d", "F_q"];
+        if max(F_f_range) > 0
+            plot(t_range, F_f_range, 'LineWidth', 2);
+            legends = [legends "F_f"];
+        end
+        legends = [legends "F_{net}"];
         plot(t_range, F_net_range, 'LineWidth', 2);
         xlabel('t (s)');
         ylabel('F (N)');
         title(sprintf('Forces vs Time %s', format));
-        legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
+        legend(legends, 'Location', 'Best');
         saveas(gcf, sprintf('Forces vs Time %s.jpg', parameter.file_name), 'jpeg');
     end
 end

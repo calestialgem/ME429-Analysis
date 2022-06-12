@@ -17,15 +17,17 @@ drag = DragForce(fileID);
 friction = Experiments(fileID);
 frictionless = Frictionless();
 
-analyze(fileID, Parameter("Initial", air, fan, drag, frictionless, 1, 70e-3:1e-3:82e-3, false))
-analyze(fileID, Parameter("Improved", air, fan, drag, friction, 90e-3, 78e-2:1e-2:92e-2, true))
-analyze(fileID, Parameter("Revised", air, fan, drag, friction, 1, 70e-3:1e-3:82e-3, false))
+p = 1;
+
+analyze(fileID, Parameter("Initial", air, fan, drag, frictionless, 1, 50e-3:1e-3 / p:200e-3, false), 77e-3:1e-3 / p:91e-3);
+analyze(fileID, Parameter("Improved", air, fan, drag, friction, 90e-3, 50e-2:1e-2 / p:200e-2, true), 82e-2:1e-2 / p:92e-2);
+analyze(fileID, Parameter("Revised", air, fan, drag, friction, 1, 50e-3:1e-3 / p:200e-3, false), 74e-3:1e-3 / p:83e-3);
 
 if fclose(fileID) ~= 0
     fprintf('Error while closing the file %s!\n', fileName);
 end
 
-function analyze(fileID, parameter)
+function analyze(fileID, parameter, wind_search_range)
     start = tic();
 
     if ~isempty(fileID)
@@ -46,7 +48,8 @@ function analyze(fileID, parameter)
     end
 
     VelocityRelations(fixed_parameter);
-    SearchWindSpeeds(parameter, fixed_parameter, 1:0.1:10);
+    parameter.range = wind_search_range;
+    SearchWindSpeeds(parameter, fixed_parameter, 3:0.1:8);
 
     if ~isempty(fileID)
         fprintf(fileID, 'Elapsed Time: %.1f s', toc(start));

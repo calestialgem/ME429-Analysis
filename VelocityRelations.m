@@ -24,12 +24,17 @@ function v_range = VelocityRelations(parameter)
         plot(v_range(k_range), F_t_range(k_range), 'LineWidth', 2);
         plot(v_range(k_range), F_d_range(k_range), 'LineWidth', 2);
         plot(v_range(k_range), F_q_range(k_range), 'LineWidth', 2);
-        plot(v_range(k_range), F_f_range(k_range), 'LineWidth', 2);
+        legends = ["F_t", "F_d", "F_q"];
+        if max(F_f_range) > 0
+            plot(v_range(k_range), F_f_range(k_range), 'LineWidth', 2);
+            legends = [legends "F_f"];
+        end
+        legends = [legends "F_{net}"];
         plot(v_range(k_range), F_net_range(k_range), 'LineWidth', 2);
         ylabel('F (N)');
         xlabel('v (m/s)');
         title(sprintf('Forces vs Velocity %s', format));
-        legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
+        legend(legends, 'Location', 'Best');
         saveas(gcf, sprintf('Forces vs Velocity %s.jpg', parameter.file_name), 'jpeg');
     end
 end
