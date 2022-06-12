@@ -35,7 +35,7 @@ function analyze(fileID, parameter)
     [v_top, x_best] = SearchParameter(parameter);
     fixed_parameter = Parameter(parameter.air, parameter.fan, parameter.F_d, parameter.F_f, parameter.fixed, x_best, parameter.parameter);
 
-    Simulate(fixed_parameter, 30);
+    Simulate(fixed_parameter, 30, true);
 
     if ~isempty(fileID)
         [v_min, v_max] = fixed_parameter.vehicle(1).SpeedBoundary();

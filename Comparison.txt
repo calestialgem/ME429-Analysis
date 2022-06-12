@@ -1,0 +1,11 @@
+Design:
+* d = 90 mm
+* Z = 1.25
+
+At t = 1.05 s
+
+- v_real    =       5.64 m/s
+
+- v_initial =       6.55 m/s ; Error = 16.20%
+
+- v_revised =       6.23 m/s ; Error = 10.52%
