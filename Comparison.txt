@@ -1,11 +1,17 @@
 Design:
-* d = 90 mm
-* Z = 1.25
+d     = 90.00 mm
+Z     =  1.25
+t_f   =  1.05 s
+v_f   =  5.64 m/s
 
-At t = 1.05 s
+Initial Analysis:
+v_f   =  6.55 m/s
+e     = 16.20 %
+v_top = 11.22 m/s
+rel   =  2.02
 
-- v_real    =       5.64 m/s
-
-- v_initial =       6.55 m/s ; Error = 16.20%
-
-- v_revised =       6.23 m/s ; Error = 10.52%
+Revised Analysis:
+v_f   =  6.23 m/s
+e     = 10.52 %
+v_top =  8.67 m/s
+rel   =  1.56
