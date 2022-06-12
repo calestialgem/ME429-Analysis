@@ -11,7 +11,7 @@ function v_range = Simulate(parameter, t_f)
     xlabel('t (s)');
     ylabel('v (m/s)');
     title(sprintf('Velocity vs Time %s', format));
-    saveas(gcf, 'Velocity vs Time', 'jpeg');
+    saveas(gcf, sprintf('Velocity vs Time %s.jpg', parameter.file_name()), 'jpeg');
     figure();
     hold('on');
     grid('on');
@@ -19,7 +19,7 @@ function v_range = Simulate(parameter, t_f)
     xlabel('t (s)');
     ylabel('a (m/s^2)');
     title(sprintf('Acceleration vs Time %s', format));
-    saveas(gcf, 'Acceleration vs Time', 'jpeg');
+    saveas(gcf, sprintf('Acceleration vs Time %s.jpg', parameter.file_name()), 'jpeg');
     figure();
     hold('on');
     grid('on');
@@ -32,5 +32,5 @@ function v_range = Simulate(parameter, t_f)
     ylabel('F (N)');
     title(sprintf('Forces vs Time %s', format));
     legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
-    saveas(gcf, 'Forces vs Time', 'jpeg');
+    saveas(gcf, sprintf('Forces vs Time %s.jpg', parameter.file_name()), 'jpeg');
 end

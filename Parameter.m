@@ -76,5 +76,12 @@ classdef Parameter
                 subscript = sprintf('d_%s=%.1f mm', sub, x * 1e3);
             end
         end
+        function file_name = file_name(self)
+            if self.parameter
+                file_name = sprintf('d %.1f mm', self.fixed * 1e3);
+            else
+                file_name = sprintf('Z %.3f', self.fixed);
+            end
+        end
     end
 end

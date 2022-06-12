@@ -16,7 +16,7 @@ function v_range = VelocityRelations(parameter)
     ylabel('a (m/s^2)');
     xlabel('v (m/s)');
     title(sprintf('Acceleration vs Velocity %s', format));
-    saveas(gcf, 'Acceleration vs Velocity', 'jpeg');
+    saveas(gcf, sprintf('Acceleration vs Velocity %s.jpg', parameter.file_name()), 'jpeg');
     figure();
     hold('on');
     grid('on');
@@ -29,5 +29,5 @@ function v_range = VelocityRelations(parameter)
     xlabel('v (m/s)');
     title(sprintf('Forces vs Velocity %s', format));
     legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
-    saveas(gcf, 'Forces vs Velocity', 'jpeg');
+    saveas(gcf, sprintf('Forces vs Velocity %s.jpg', parameter.file_name()), 'jpeg');
 end

@@ -15,5 +15,5 @@ function [v_top, x_top, k_top] = SearchParameter(parameter)
     xlabel(parameter.label());
     ylabel('v_{top} (m/s)');
     plot(parameter.range, v_range, 'LineWidth', 2);
-    saveas(gcf, x_title, 'jpeg');
+    saveas(gcf, sprintf("%s %s.jpg", x_title, parameter.file_name()), 'jpeg');
 end

@@ -18,7 +18,7 @@ function SearchWindSpeeds(parameter, fixed_parameter, v_w_range)
     xlabel('v_w (m/s)');
     ylabel(parameter.best_label());
     plot(v_w_range, x_best_range, 'LineWidth', 2);
-    saveas(gcf, x_title, 'jpeg');
+    saveas(gcf, sprintf("%s %s.jpg", x_title, parameter.file_name()), 'jpeg');
     figure();
     hold('on');
     grid('on');
@@ -28,5 +28,5 @@ function SearchWindSpeeds(parameter, fixed_parameter, v_w_range)
     plot(v_w_range, v_top_range, 'LineWidth', 2);
     plot(v_w_range, v_fixed_range, 'LineWidth', 2);
     legend(sprintf('%s=%s_{best}(v_w)', parameter.symbol(), parameter.symbol()), parameter.format(fixed_parameter.x(1)), 'Location', 'Best');
-    saveas(gcf, 'Top Speed vs Wind Speed', 'jpeg');
+    saveas(gcf, sprintf("Top Speed vs Wind Speed %s.jpg", parameter.file_name()), 'jpeg');
 end
