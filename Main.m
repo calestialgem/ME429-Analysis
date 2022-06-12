@@ -16,7 +16,8 @@ fan = GetAPC14x7E(fileID);
 drag = DragForce(fileID);
 friction = Experiments(fileID);
 
-analyze(fileID, Parameter(air, fan, drag, friction, 90e-3, 0.5:0.01:2, true))
+analyze(fileID, Parameter(air, fan, drag, friction, 90e-3, 0.5:0.001:2, true))
+analyze(fileID, Parameter(air, fan, drag, friction, 1, 70e-3:0.1e-3:90e-3, false))
 
 if fclose(fileID) ~= 0
     fprintf('Error while closing the file %s!\n', fileName);
@@ -38,7 +39,7 @@ function analyze(fileID, parameter)
 
     if ~isempty(fileID)
         [v_min, v_max] = fixed_parameter.vehicle(1).SpeedBoundary();
-        fprintf(fileID, 'Z=%.3f mm v_top=%.3fm/s B=[%.3f, %.3f]m/s\n', x_best, v_top, v_min, v_max);
+        fprintf(fileID, '%s v_top=%.3fm/s B=[%.3f, %.3f]m/s\n', parameter.format(x_best), v_top, v_min, v_max);
     end
 
     VelocityRelations(fixed_parameter);
