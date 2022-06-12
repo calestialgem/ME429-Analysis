@@ -1,5 +1,9 @@
 Root Mean Squares Ct=0.97% Cq=2.88%
 Drag Root Mean Square Error: 3.72%
 Experiments: e_t=29.797%, e_q=6.018%
+
+________________________________________________________________________________
+Fixed Transmission Ratio d 90.0 mm
 Z_min=0.500 Z_max=2.000 Z_step=0.010
 Z=0.920 mm v_top=9.180m/s B=[5.000, 73.702]m/s
+Elapsed Time: 105.3 s

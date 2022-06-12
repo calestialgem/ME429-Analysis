@@ -1,4 +1,4 @@
-function F_d = DragForce(fileID)
+function drag = DragForce(fileID)
     DragForces = [
             1 0.0056771236;
             2 0.019862027;
@@ -23,9 +23,9 @@ function F_d = DragForce(fileID)
             ];
     c_d_data = DragForces(:, 2) ./ DragForces(:, 1).^2;
     c_d = mean(c_d_data);
-    F_d = @(v_t) c_d * v_t.^2;
+    drag = @(v_t) c_d * v_t.^2;
     if ~isempty(fileID)
-        fprintf(fileID, 'Drag Root Mean Square Error: %.2f%%\n', 100 * sqrt(sum((F_d(DragForces(:, 1)) - DragForces(:, 2)).^2) / size(DragForces, 1)) / (max(DragForces(:, 2)) - min(DragForces(:, 2))));
+        fprintf(fileID, 'Drag Root Mean Square Error: %.2f%%\n', 100 * sqrt(sum((drag(DragForces(:, 1)) - DragForces(:, 2)).^2) / size(DragForces, 1)) / (max(DragForces(:, 2)) - min(DragForces(:, 2))));
         v_w_range = 0:0.1:max(DragForces(:, 1));
         figure();
         hold('on');
@@ -33,7 +33,7 @@ function F_d = DragForce(fileID)
         xlabel('v_w (m/s)');
         ylabel('F_d (N)');
         title('Drag Force Fit');
-        plot(v_w_range, F_d(v_w_range), 'LineWidth', 2);
+        plot(v_w_range, drag(v_w_range), 'LineWidth', 2);
         plot(DragForces(:, 1), DragForces(:, 2), 'x', 'LineWidth', 2);
         saveas(gcf, 'Drag Force Fit', 'jpeg');
     end

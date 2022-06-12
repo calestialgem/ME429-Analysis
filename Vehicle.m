@@ -2,19 +2,19 @@ classdef Vehicle
     properties
         air Air
         fan Fan
-        F_d
-        F_f
+        drag
+        friction
         d
         Z
         mul_a
         mul_q
     end
     methods
-        function self = Vehicle(air, fan, F_d, F_f, d, Z)
+        function self = Vehicle(air, fan, drag, friction, d, Z)
             self.air = air;
             self.fan = fan;
-            self.F_d = F_d;
-            self.F_f = F_f;
+            self.drag = drag;
+            self.friction = friction;
             self.d = d;
             self.Z = Z;
             m = 300e-3;
@@ -28,9 +28,9 @@ classdef Vehicle
             w_b = 2 / self.d * v;
             w_p = w_b / self.Z;
             [F_t, T_q] = self.fan.Find(self.air, v_t, w_p);
-            F_d = self.F_d(v_t);
+            F_d = self.drag(v_t);
             F_q = self.mul_q * T_q;
-            F_f = self.F_f(v);
+            F_f = self.friction(v);
             F_net = F_t - F_d - F_q - F_f;
             a = F_net * self.mul_a;
         end
