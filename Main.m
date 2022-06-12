@@ -13,6 +13,8 @@ end
 
 tic();
 
+Experiments(fileID);
+
 fan = GetAPC14x7E();
 fan.PlotFitJ();
 fan.PlotFitw();

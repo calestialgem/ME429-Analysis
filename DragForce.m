@@ -24,7 +24,7 @@ function F_d = DragForce(fileID)
     c_d_data = DragForces(:, 2) ./ DragForces(:, 1).^2;
     c_d = mean(c_d_data);
     F_d = @(v_t) c_d * v_t.^2;
-    fprintf(fileID, 'Drag Root Mean Square Error: %e\n', sqrt(sum((F_d(DragForces(:, 1)) - DragForces(:, 2)).^2)) / size(DragForces, 1) / (max(DragForces(:, 1)) - min(DragForces(:, 1))));
+    fprintf(fileID, 'Drag Root Mean Square Error: %.2f%%\n', 100 * sqrt(sum((F_d(DragForces(:, 1)) - DragForces(:, 2)).^2) / size(DragForces, 1)) / (max(DragForces(:, 2)) - min(DragForces(:, 2))));
     v_w_range = 0:0.1:max(DragForces(:, 1));
     figure();
     hold('on');

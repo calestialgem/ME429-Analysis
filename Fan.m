@@ -27,8 +27,8 @@ classdef Fan
             self.w_J_data = w_J_data;
             self.Ct_data = Ct_data;
             self.Cq_data = Cq_data;
-            self.Ct_rms = sqrt(sum((self.Ct(w_J_data) - Ct_data).^2)) / size(w_J_data, 1) / (max(Ct_data) - min(Ct_data));
-            self.Cq_rms = sqrt(sum((self.Cq(w_J_data) - Cq_data).^2)) / size(w_J_data, 1) / (max(Cq_data) - min(Cq_data));
+            self.Ct_rms = sqrt(sum((self.Ct(w_J_data) - Ct_data).^2) / size(w_J_data, 1)) / (max(Ct_data) - min(Ct_data));
+            self.Cq_rms = sqrt(sum((self.Cq(w_J_data) - Cq_data).^2) / size(w_J_data, 1)) / (max(Cq_data) - min(Cq_data));
         end
         function [T, Q] = Find(self, air, V, w)
             J = V ./ (w .* self.D);
@@ -36,7 +36,7 @@ classdef Fan
             Q = (air.R * self.D^5) * w.^2 .* self.Cq(w, J);
         end
         function RMS = RootMeanSquare(self)
-            RMS = sprintf('Root Mean Squares Ct=%e Cq=%e\n', self.Ct_rms, self.Cq_rms);
+            RMS = sprintf('Root Mean Squares Ct=%.2f%%%% Cq=%.2f%%%%\n', self.Ct_rms * 100, self.Cq_rms * 100);
         end
         function PlotFitJ(self)
             J_data = reshape(self.w_J_data(:, 2), [], 17);
