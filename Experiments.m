@@ -1,5 +1,5 @@
 function F_f = Experiments(fileID)
-    fan = GetAPC14x7E();
+    fan = GetAPC14x7E([]);
     air = Air(20 * 1000/3600);
     V = [10 15 20];
     I_m = [73 78 82] * 1e-3;

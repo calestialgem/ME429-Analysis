@@ -1,4 +1,5 @@
-function v_range = VelocityRelations(vehicle)
+function v_range = VelocityRelations(parameter)
+    vehicle = parameter.vehicle(1);
     [v_min, v_max] = vehicle.SpeedBoundary();
     v_range = v_min:(v_max - v_min) / 1e3:v_max;
     [a_range, ~, F_t_range, F_d_range, F_q_range, F_f_range, F_net_range] = vehicle.Acceleration(v_range);
@@ -7,13 +8,14 @@ function v_range = VelocityRelations(vehicle)
         k_top = k_top - 1;
     end
     k_range = 1:k_top;
+    format = parameter.format(parameter.x(1));
     figure();
     hold('on');
     grid('on');
     plot(v_range(k_range), a_range(k_range), 'LineWidth', 2);
     ylabel('a (m/s^2)');
     xlabel('v (m/s)');
-    title(sprintf('Acceleration vs Velocity Z=%.3f', vehicle.Z));
+    title(sprintf('Acceleration vs Velocity %s', format));
     saveas(gcf, 'Acceleration vs Velocity', 'jpeg');
     figure();
     hold('on');
@@ -25,7 +27,7 @@ function v_range = VelocityRelations(vehicle)
     plot(v_range(k_range), F_net_range(k_range), 'LineWidth', 2);
     ylabel('F (N)');
     xlabel('v (m/s)');
-    title(sprintf('Forces vs Velocity Z=%.3f', vehicle.Z));
+    title(sprintf('Forces vs Velocity %s', format));
     legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
     saveas(gcf, 'Forces vs Velocity', 'jpeg');
 end

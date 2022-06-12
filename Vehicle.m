@@ -2,21 +2,21 @@ classdef Vehicle
     properties
         air Air
         fan Fan
-        d
-        Z
         F_d
         F_f
+        d
+        Z
         mul_a
         mul_q
     end
     methods
-        function self = Vehicle(air, fan, Z, F_d, F_f)
+        function self = Vehicle(air, fan, F_d, F_f, d, Z)
             self.air = air;
             self.fan = fan;
-            self.d = 90e-3;
-            self.Z = Z;
             self.F_d = F_d;
             self.F_f = F_f;
+            self.d = d;
+            self.Z = Z;
             m = 300e-3;
             % https://www.grainger.com/know-how/equipment-information/kh-types-of-belt-drives-efficiency
             n = 0.9;

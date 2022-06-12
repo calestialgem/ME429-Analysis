@@ -1,4 +1,4 @@
-function APC14x7E = GetAPC14x7E()
+function APC14x7E = GetAPC14x7E(fileID)
     % w in RPM, J in 1/rev, Pe, Ct, Cp, PWR, Q in In.Lbf, T in Lbf
     PER3_14x7E_DAT = [
                 1000 0.00 0.0000 0.0902 0.0335 0.001 0.091 0.110;
@@ -521,4 +521,9 @@ function APC14x7E = GetAPC14x7E()
     % Cq
     PER3_14x7E_DAT(:, 5) = PER3_14x7E_DAT(:, 5) / (2 * pi)^3;
     APC14x7E = Fan("APC 14x7E", 1.20 * 28.3495231e-3, 14 * 2.54e-2, min(PER3_14x7E_DAT(:, 1)), max(PER3_14x7E_DAT(:, 1)), PER3_14x7E_DAT(:, [1 2]), PER3_14x7E_DAT(:, 4), PER3_14x7E_DAT(:, 5));
+    if ~isempty(fileID)
+        APC14x7E.PlotFitJ();
+        APC14x7E.PlotFitw();
+        fprintf(fileID, APC14x7E.RootMeanSquare());
+    end
 end

@@ -1,22 +1,24 @@
-function SearchWindSpeeds(fan, v_w_range, Z_fixed, Z_range, F_d, F_f)
-    Z_best_range = zeros(size(v_w_range));
+function SearchWindSpeeds(parameter, fixed_parameter, v_w_range)
+    x_best_range = zeros(size(v_w_range));
     v_top_range = zeros(size(v_w_range));
     v_fixed_range = zeros(size(v_w_range));
     for k = 1:length(v_w_range)
-        air = Air(v_w_range(k));
-        [Z_best, v_top] = BestTransmissionRatio(air, fan, Z_range, F_d, F_f);
-        Z_best_range(k) = Z_best;
+        parameter.air = Air(v_w_range(k));
+        fixed_parameter.air = parameter.air;
+        [x_best, v_top] = BestParameter(parameter);
+        x_best_range(k) = x_best;
         v_top_range(k) = v_top;
-        v_fixed_range(k) = TopSpeed(Vehicle(air, fan, Z_fixed, F_d, F_f));
+        v_fixed_range(k) = TopSpeed(fixed_parameter.vehicle(1));
     end
+    x_title = sprintf('Best %s vs Wind Speed', parameter.name());
     figure();
     hold('on');
     grid('on');
-    title('Best Transmission Ratio vs Wind Speed');
+    title(x_title);
     xlabel('v_w (m/s)');
-    ylabel('Z_{best}');
-    plot(v_w_range, Z_best_range, 'LineWidth', 2);
-    saveas(gcf, 'Best Transmission Ratio vs Wind Speed', 'jpeg');
+    ylabel(parameter.best_label());
+    plot(v_w_range, x_best_range, 'LineWidth', 2);
+    saveas(gcf, x_title, 'jpeg');
     figure();
     hold('on');
     grid('on');
@@ -25,6 +27,6 @@ function SearchWindSpeeds(fan, v_w_range, Z_fixed, Z_range, F_d, F_f)
     ylabel('v_{top} (m/s)');
     plot(v_w_range, v_top_range, 'LineWidth', 2);
     plot(v_w_range, v_fixed_range, 'LineWidth', 2);
-    legend('Z=Z_{best}(v_w)', sprintf('Z=%.3f', Z_fixed), 'Location', 'Best');
+    legend(sprintf('%s=%s_{best}(v_w)', parameter.symbol(), parameter.symbol()), parameter.format(fixed_parameter.x(1)), 'Location', 'Best');
     saveas(gcf, 'Top Speed vs Wind Speed', 'jpeg');
 end
