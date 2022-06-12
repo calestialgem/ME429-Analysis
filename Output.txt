@@ -4,16 +4,16 @@ Experiments: e_t=29.797%, e_q=6.018%
 
 ________________________________________________________________________________
 Fixed Wheel Diameter Initial
-d_min=50.0 mm d_max=200.0 mm d_step=1.0 mm
-d=89.0 mm v_top=10.703m/s B=[5.000, 79.220]m/s
-Elapsed Time: 17.2 s
+d_min=50.0 mm d_max=200.0 mm d_step=0.1 mm
+d=89.3 mm v_top=10.703m/s B=[5.000, 79.488]m/s
+Elapsed Time: 115.4 s
 ________________________________________________________________________________
 Fixed Transmission Ratio Improved
-Z_min=0.500 Z_max=2.000 Z_step=0.010
-Z=0.900 v_top=8.615m/s B=[5.000, 72.100]m/s
-Elapsed Time: 16.2 s
+Z_min=0.500 Z_max=2.000 Z_step=0.001
+Z=0.902 v_top=8.615m/s B=[5.000, 72.260]m/s
+Elapsed Time: 76.5 s
 ________________________________________________________________________________
 Fixed Wheel Diameter Revised
-d_min=50.0 mm d_max=200.0 mm d_step=1.0 mm
-d=81.0 mm v_top=8.615m/s B=[5.000, 72.100]m/s
-Elapsed Time: 14.4 s
+d_min=50.0 mm d_max=200.0 mm d_step=0.1 mm
+d=81.2 mm v_top=8.615m/s B=[5.000, 72.278]m/s
+Elapsed Time: 66.7 s

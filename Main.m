@@ -17,7 +17,7 @@ drag = DragForce(fileID);
 friction = Experiments(fileID);
 frictionless = Frictionless();
 
-p = 1;
+p = 10;
 
 analyze(fileID, Parameter("Initial", air, fan, drag, frictionless, 1, 50e-3:1e-3 / p:200e-3, false), 77e-3:1e-3 / p:91e-3);
 analyze(fileID, Parameter("Improved", air, fan, drag, friction, 90e-3, 50e-2:1e-2 / p:200e-2, true), 82e-2:1e-2 / p:92e-2);
