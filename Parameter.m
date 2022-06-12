@@ -1,5 +1,6 @@
 classdef Parameter
     properties
+        file_name
         air
         fan
         F_d
@@ -9,7 +10,8 @@ classdef Parameter
         parameter
     end
     methods
-        function self = Parameter(air, fan, F_d, F_f, fixed, range, parameter)
+        function self = Parameter(file_name, air, fan, F_d, F_f, fixed, range, parameter)
+            self.file_name = file_name;
             self.air = air;
             self.fan = fan;
             self.F_d = F_d;
@@ -74,13 +76,6 @@ classdef Parameter
                 subscript = sprintf('Z_%s=%.3f', sub, x);
             else
                 subscript = sprintf('d_%s=%.1f mm', sub, x * 1e3);
-            end
-        end
-        function file_name = file_name(self)
-            if self.parameter
-                file_name = sprintf('d %.1f mm', self.fixed * 1e3);
-            else
-                file_name = sprintf('Z %.3f', self.fixed);
             end
         end
     end

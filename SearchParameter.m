@@ -7,13 +7,15 @@ function [v_top, x_top, k_top] = SearchParameter(parameter)
     end
     [v_top, k_top] = max(v_range);
     x_top = parameter.x(k_top);
-    x_title = sprintf('Top Speed vs %s', parameter.name());
-    figure();
-    hold('on');
-    grid('on');
-    title(x_title);
-    xlabel(parameter.label());
-    ylabel('v_{top} (m/s)');
-    plot(parameter.range, v_range, 'LineWidth', 2);
-    saveas(gcf, sprintf("%s %s.jpg", x_title, parameter.file_name()), 'jpeg');
+    if ~isempty(parameter.file_name)
+        x_title = sprintf('Top Speed vs %s', parameter.name());
+        figure();
+        hold('on');
+        grid('on');
+        title(x_title);
+        xlabel(parameter.label());
+        ylabel('v_{top} (m/s)');
+        plot(parameter.range, v_range, 'LineWidth', 2);
+        saveas(gcf, sprintf("%s %s.jpg", x_title, parameter.file_name), 'jpeg');
+    end
 end

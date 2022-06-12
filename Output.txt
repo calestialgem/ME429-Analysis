@@ -3,12 +3,17 @@ Drag Root Mean Square Error: 3.72%
 Experiments: e_t=29.797%, e_q=6.018%
 
 ________________________________________________________________________________
-Fixed Transmission Ratio d 90.0 mm
-Z_min=0.780 Z_max=0.920 Z_step=0.000
-Z=0.902 v_top=8.615m/s B=[5.000, 72.284]m/s
-Elapsed Time: 1159.1 s
+Fixed Wheel Diameter Initial
+d_min=70.0 mm d_max=82.0 mm d_step=1.0 mm
+d=82.0 mm v_top=10.616m/s B=[5.000, 72.990]m/s
+Elapsed Time: 20.7 s
 ________________________________________________________________________________
-Fixed Wheel Diameter Z 1.000
-d_min=70.0 mm d_max=82.0 mm d_step=0.0 mm
-d=81.2 mm v_top=8.615m/s B=[5.000, 72.286]m/s
-Elapsed Time: 1026.4 s
+Fixed Transmission Ratio Improved
+Z_min=0.780 Z_max=0.920 Z_step=0.010
+Z=0.900 v_top=8.615m/s B=[5.000, 72.100]m/s
+Elapsed Time: 20.1 s
+________________________________________________________________________________
+Fixed Wheel Diameter Revised
+d_min=70.0 mm d_max=82.0 mm d_step=1.0 mm
+d=81.0 mm v_top=8.615m/s B=[5.000, 72.100]m/s
+Elapsed Time: 18.0 s

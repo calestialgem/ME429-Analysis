@@ -15,9 +15,11 @@ air = Air(5);
 fan = GetAPC14x7E(fileID);
 drag = DragForce(fileID);
 friction = Experiments(fileID);
+frictionless = Frictionless();
 
-analyze(fileID, Parameter(air, fan, drag, friction, 90e-3, 78e-2:0.01e-2:92e-2, true))
-analyze(fileID, Parameter(air, fan, drag, friction, 1, 70e-3:0.01e-3:82e-3, false))
+analyze(fileID, Parameter("Initial", air, fan, drag, frictionless, 1, 70e-3:1e-3:82e-3, false))
+analyze(fileID, Parameter("Improved", air, fan, drag, friction, 90e-3, 78e-2:1e-2:92e-2, true))
+analyze(fileID, Parameter("Revised", air, fan, drag, friction, 1, 70e-3:1e-3:82e-3, false))
 
 if fclose(fileID) ~= 0
     fprintf('Error while closing the file %s!\n', fileName);
@@ -28,14 +30,15 @@ function analyze(fileID, parameter)
 
     if ~isempty(fileID)
         fprintf(fileID, '\n________________________________________________________________________________\n');
-        fprintf(fileID, 'Fixed %s %s\n', parameter.name(), parameter.file_name());
+        fprintf(fileID, 'Fixed %s %s\n', parameter.name(), parameter.file_name);
         fprintf(fileID, '%s %s %s\n', parameter.subscript(parameter.x(1), 'min'), parameter.subscript(parameter.range(end), 'max'), parameter.subscript(parameter.x(2) - parameter.x(1), 'step'));
     end
 
     [v_top, x_best] = SearchParameter(parameter);
-    fixed_parameter = Parameter(parameter.air, parameter.fan, parameter.F_d, parameter.F_f, parameter.fixed, x_best, parameter.parameter);
+    fixed_parameter = parameter;
+    fixed_parameter.range = x_best;
 
-    Simulate(fixed_parameter, 30, true);
+    Simulate(fixed_parameter, 30);
 
     if ~isempty(fileID)
         [v_min, v_max] = fixed_parameter.vehicle(1).SpeedBoundary();

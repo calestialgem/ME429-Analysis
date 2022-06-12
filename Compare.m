@@ -15,17 +15,18 @@ air = Air(20 * 1000/3600);
 fan = GetAPC14x7E([]);
 drag = DragForce([]);
 friction = Experiments([]);
+frictionless = Frictionless();
 
 d = 90e-3;
 Z = 1.25;
 
-initial = Parameter(air, fan, drag, @(x) 0, d, Z, true);
-revised = Parameter(air, fan, drag, friction, d, Z, true);
+initial = Parameter([], air, fan, drag, frictionless, d, Z, true);
+revised = Parameter([], air, fan, drag, friction, d, Z, true);
 
 t_f = 1.05;
 v_real = 5.64;
-v_initial = Simulate(initial, t_f, false);
-v_revised = Simulate(revised, t_f, false);
+v_initial = Simulate(initial, t_f);
+v_revised = Simulate(revised, t_f);
 
 v_top_initial = TopSpeed(initial.vehicle(1));
 v_top_revised = TopSpeed(revised.vehicle(1));

@@ -8,26 +8,28 @@ function v_range = VelocityRelations(parameter)
         k_top = k_top - 1;
     end
     k_range = 1:k_top;
-    format = parameter.format(parameter.x(1));
-    figure();
-    hold('on');
-    grid('on');
-    plot(v_range(k_range), a_range(k_range), 'LineWidth', 2);
-    ylabel('a (m/s^2)');
-    xlabel('v (m/s)');
-    title(sprintf('Acceleration vs Velocity %s', format));
-    saveas(gcf, sprintf('Acceleration vs Velocity %s.jpg', parameter.file_name()), 'jpeg');
-    figure();
-    hold('on');
-    grid('on');
-    plot(v_range(k_range), F_t_range(k_range), 'LineWidth', 2);
-    plot(v_range(k_range), F_d_range(k_range), 'LineWidth', 2);
-    plot(v_range(k_range), F_q_range(k_range), 'LineWidth', 2);
-    plot(v_range(k_range), F_f_range(k_range), 'LineWidth', 2);
-    plot(v_range(k_range), F_net_range(k_range), 'LineWidth', 2);
-    ylabel('F (N)');
-    xlabel('v (m/s)');
-    title(sprintf('Forces vs Velocity %s', format));
-    legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
-    saveas(gcf, sprintf('Forces vs Velocity %s.jpg', parameter.file_name()), 'jpeg');
+    if ~isempty(parameter.file_name)
+        format = parameter.format(parameter.x(1));
+        figure();
+        hold('on');
+        grid('on');
+        plot(v_range(k_range), a_range(k_range), 'LineWidth', 2);
+        ylabel('a (m/s^2)');
+        xlabel('v (m/s)');
+        title(sprintf('Acceleration vs Velocity %s', format));
+        saveas(gcf, sprintf('Acceleration vs Velocity %s.jpg', parameter.file_name), 'jpeg');
+        figure();
+        hold('on');
+        grid('on');
+        plot(v_range(k_range), F_t_range(k_range), 'LineWidth', 2);
+        plot(v_range(k_range), F_d_range(k_range), 'LineWidth', 2);
+        plot(v_range(k_range), F_q_range(k_range), 'LineWidth', 2);
+        plot(v_range(k_range), F_f_range(k_range), 'LineWidth', 2);
+        plot(v_range(k_range), F_net_range(k_range), 'LineWidth', 2);
+        ylabel('F (N)');
+        xlabel('v (m/s)');
+        title(sprintf('Forces vs Velocity %s', format));
+        legend('F_t', 'F_d', 'F_q', 'F_f', 'F_{net}', 'Location', 'Best');
+        saveas(gcf, sprintf('Forces vs Velocity %s.jpg', parameter.file_name), 'jpeg');
+    end
 end
